@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如梦令 · 李清照</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans SC',sans-serif;background:#f7f3eb;color:#333;line-height:1.7;min-height:100vh}
+  .page{max-width:860px;margin:0 auto;padding:24px 20px 80px}
+
+  .header{text-align:center;padding:32px 0 24px;position:relative}
+  .header .title{font-family:'Noto Serif SC',serif;font-size:28px;font-weight:900;color:#4a3728;letter-spacing:2px}
+  .header .poem{font-family:'Noto Serif SC',serif;font-size:20px;color:#8b6914;margin-top:12px;line-height:2.6;background:rgba(255,255,255,0.5);border-radius:12px;padding:24px 16px;max-width:640px;margin-left:auto;margin-right:auto}
+  .header .sub{font-size:13px;color:#a08560;margin-top:6px}
+  .header .poem .poem-line{display:flex;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+  .char-box{display:inline-flex;flex-direction:column;align-items:center;width:40px;text-align:center}
+  .char-box .py{font-size:10px;color:#a08560;font-family:'Noto Sans SC',sans-serif;font-weight:400;line-height:1;margin-bottom:3px}
+  .char-box .hz{font-family:'Noto Serif SC',serif;font-size:22px;color:#8b6914;line-height:1.2}
+  .header .poem .punc{display:flex;align-items:flex-end;width:16px;text-align:center;font-size:20px;padding-bottom:2px}
+  .header .poem .author{text-align:center;font-size:13px;color:#a08560;margin-top:8px}
+
+  
+  /* Life Map */
+  .life-map{background:#fff;border-radius:16px;padding:28px 24px 20px;margin:28px 0;box-shadow:0 3px 14px rgba(0,0,0,0.05)}
+  .life-map h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;text-align:center;margin-bottom:6px}
+  .life-map .subtitle{text-align:center;font-size:12px;color:#999;margin-bottom:20px}
+  .dual-col{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid #e8dcc8}
+  @media(max-width:600px){.dual-col{grid-template-columns:1fr}}
+  .dual-col .col-header{text-align:center;padding:12px 8px;font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:#fff;border-radius:0}
+  .dual-col .col-left .col-header{background:linear-gradient(135deg,#2c3e50,#34495e)}
+  .dual-col .col-right .col-header{background:linear-gradient(135deg,#8e44ad,#9b59b6)}
+  .dual-tl{padding:8px 0}
+  .tl-row{display:flex;gap:0;min-height:44px;align-items:stretch;border-bottom:1px solid #f5f0e8}
+  .tl-row:last-child{border-bottom:none}
+  .tl-year{width:62px;text-align:center;font-size:11px;color:#888;padding:8px 4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:500}
+  .tl-year.star{color:#8b6914;font-weight:700;background:#fdf8ee}
+  .tl-event{flex:1;padding:8px 10px;font-size:12px;color:#555;display:flex;align-items:center;line-height:1.5}
+  .tl-event.peak{background:linear-gradient(135deg,#fdf8ee,#fffdf5);color:#8b6914;font-weight:600;border-left:3px solid #c9a96e}
+  .tl-event .mark{display:inline-block;background:#c9a96e;color:#fff;font-size:10px;padding:2px 6px;border-radius:8px;margin-right:4px;white-space:nowrap}
+  .dual-tag{display:inline-block;font-size:9px;padding:1px 6px;border-radius:8px;margin-left:4px;white-space:nowrap}
+  .dual-tag.personal{background:#eaf2f8;color:#2c3e50;border:1px solid #2c3e5040}
+  .dual-tag.history{background:#f5eaf8;color:#8e44ad;border:1px solid #8e44ad40}
+  .prose-section{background:#fff;border-radius:14px;padding:24px;margin:20px 0;box-shadow:0 2px 10px rgba(0,0,0,0.04);border-left:4px solid #c9a96e}
+  .prose-section.sima{border-left-color:#2c3e50}
+  .prose-section.zhuangzi{border-left-color:#8e44ad}
+  .prose-section h4{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#4a3728;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .prose-section .prose-text{font-size:14px;color:#555;line-height:1.9}
+
+  /* 顾恺之 × 可心 */
+  .kexin-dialogue{background:linear-gradient(135deg,#fffdf5,#fef9f0);border-radius:16px;padding:28px 24px;margin:28px 0;box-shadow:0 3px 14px rgba(0,0,0,0.05);border:2px solid #e8dcc8}
+  .kexin-dialogue h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;text-align:center;margin-bottom:4px}
+  .kexin-dialogue .intro{text-align:center;font-size:13px;color:#999;margin-bottom:20px;line-height:1.6}
+  .kexin-dialogue .intro strong{color:#8b6914}
+  .q-item{background:#fff;border-radius:12px;padding:18px 20px;margin:12px 0;border-left:4px solid #d35400;box-shadow:0 1px 6px rgba(0,0,0,0.03)}
+  .q-item .q-avatar{font-size:28px;float:left;margin-right:12px}
+  .q-item .q-text{font-size:14px;color:#555;line-height:1.7;margin-left:44px}
+  .q-item .q-text .q-label{font-size:11px;color:#d35400;font-weight:700;letter-spacing:2px;margin-bottom:4px}
+  .q-item .q-text .q-ask{font-family:'Noto Serif SC',serif;font-size:16px;color:#4a3728;font-weight:600;margin-bottom:8px}
+  .q-item .q-answer{background:#fefcf6;border-radius:8px;padding:10px 14px;margin-top:10px;min-height:40px;font-size:13px;color:#999;border:1px dashed #e8dcc8;line-height:1.6;font-style:italic}
+  .q-item .q-answer.filled{color:#555;font-style:normal;border-style:solid;border-color:#27ae6040;background:#f0faf4}
+  .signature-area{text-align:center;margin-top:24px;padding-top:20px;border-top:1px solid #e8dcc8}
+  .signature-area .seal{width:80px;height:80px;border:3px solid #c0392b;border-radius:8px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:18px;color:#c0392b;font-weight:700;writing-mode:vertical-rl;letter-spacing:4px;padding:8px;background:#fff0f0}
+  .signature-area .caption{font-size:12px;color:#999;margin-top:4px}
+    .prose-section .prose-text .highlight{background:#fdf6ee;padding:2px 6px;border-radius:4px;color:#8b6914;font-weight:500}
+
+  /* Character Cards */
+  .chars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}
+  @media(max-width:700px){.chars{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.chars{grid-template-columns:1fr}}
+  .char-card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,0.04);text-align:center}
+  .char-card .c-avatar{width:52px;height:52px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff}
+  .char-card .c-name{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#4a3728;margin-bottom:4px}
+  .char-card .c-title{font-size:11px;color:#999;margin-bottom:8px;line-height:1.4}
+  .char-card .c-desc{font-size:12px;color:#888;line-height:1.6}
+  .char-card .c-quote{font-size:12px;color:#c9a96e;font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid #f5f0e8}
+
+  .workflow{display:flex;align-items:center;justify-content:center;gap:8px;margin:24px 0;flex-wrap:wrap;font-size:12px;color:#999}
+  .workflow .step{padding:4px 12px;border-radius:20px;background:#f5f0e8}
+  .workflow .arrow{color:#c9a96e;font-weight:700}
+  .workflow .step.gate{border:2px solid #e74c3c;background:#fff;color:#e74c3c;font-weight:700}
+
+  .experts{display:flex;flex-direction:column;gap:14px;margin:24px 0}
+
+  .expert{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.04);transition:transform 0.2s}
+  .expert:hover{transform:translateY(-1px)}
+  .expert-header{padding:16px 20px 0;display:flex;align-items:center;gap:12px}
+  .expert-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0}
+  .expert-meta{flex:1}
+  .expert-name{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;color:#4a3728}
+  .expert-role{font-size:12px;color:#999}
+  .expert-body{padding:12px 20px 20px;font-size:14px;color:#555;line-height:1.9}
+  .expert-body .highlight{background:#fdf6ee;padding:3px 8px;border-radius:4px;color:#8b6914;font-weight:500}
+  .expert-body .timeline{font-family:'Noto Sans SC',sans-serif;font-size:12px;line-height:2;background:#fdf8ee;border-radius:10px;padding:14px 16px;margin:12px 0;overflow-x:auto;white-space:nowrap}
+  .expert-body .tl-star{background:#c9a96e;color:#fff;padding:2px 8px;border-radius:10px;font-weight:700;white-space:nowrap}
+  .expert-body .tl-done{color:#27ae60;font-weight:600;white-space:nowrap}
+  .expert-body .tl-future{color:#bbb;white-space:nowrap}
+  .expert-body .tl-node{white-space:nowrap}
+
+  .expert.reviewer{border-left:4px solid #e74c3c;background:linear-gradient(135deg,#fff,#fff5f5)}
+  .expert.creator{border-left:4px solid #2980b9}
+
+  /* Divider */
+  .divider{display:flex;align-items:center;gap:12px;margin:8px 0}
+  .divider-line{flex:1;height:1px;background:#e8dcc8}
+  .divider-text{font-size:12px;color:#c9a96e;white-space:nowrap;font-weight:500}
+
+  /* Audit */
+  .audit-block{margin-top:14px;border-radius:12px;overflow:hidden}
+  .audit-item{padding:12px 16px;font-size:13px;line-height:1.7;display:flex;gap:10px}
+  .audit-item.pass{background:#f0faf4}
+  .audit-item.pass .audit-icon{color:#27ae60;font-size:16px;flex-shrink:0;margin-top:1px}
+  .audit-item.fix{background:#fef9f0}
+  .audit-item.fix .audit-icon{color:#e67e22;font-size:16px;flex-shrink:0;margin-top:1px}
+  .audit-target{font-size:11px;color:#999;margin-bottom:2px}
+
+  /* Image */
+  .image-section{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 10px rgba(0,0,0,0.04);margin:24px 0;border-left:4px solid #d35400}
+  .image-section h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .image-section .post-audit{font-size:12px;color:#27ae60;margin-bottom:14px}
+  .prompt-box{background:#fdf8ee;border:2px solid #e8dcc8;border-radius:12px;padding:18px 20px;font-size:14px;color:#555;line-height:1.9;white-space:pre-wrap;font-family:'Noto Sans SC',sans-serif;margin-bottom:16px}
+  .prompt-box .label{font-size:11px;color:#c9a96e;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;display:block}
+  .copy-btn{background:linear-gradient(135deg,#c9a96e,#8b6914);color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Noto Sans SC',sans-serif}
+  .copy-btn:hover{opacity:0.9}
+  .copy-ok{color:#27ae60;font-size:13px;margin-left:10px;display:none}
+
+  /* Five Grid */
+  .five-grid{background:#fdf8ee;border-radius:14px;padding:20px;margin-top:24px;border:1px solid #e8dcc8}
+  .five-grid h4{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#8b6914;margin-bottom:14px}
+  .grid-item{padding:10px 0;border-bottom:1px solid #eee;display:flex;gap:12px;font-size:14px}
+  .grid-item:last-child{border-bottom:none}
+  .grid-num{width:26px;height:26px;border-radius:50%;background:#c9a96e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+  .grid-text{color:#555;line-height:1.6}
+  .grid-text strong{color:#4a3728}
+
+  /* Map Enhanced */
+  .map-wrapper{position:relative;overflow:hidden;border-radius:14px;background:#f5efe3;padding:8px}
+  @keyframes starPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+  .star-pulse{animation:starPulse 2.5s ease-in-out infinite;transform-origin:center}
+
+  /* Interactive Options */
+  .q-options{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 6px}
+  .option-card{position:relative;flex:1;min-width:130px;padding:14px 12px;border-radius:12px;border:2px solid #e8dcc8;background:#fff;cursor:pointer;text-align:center;transition:all 0.25s;user-select:none}
+  .option-card:hover{border-color:#c9a96e;background:#fdf8ee;transform:translateY(-2px);box-shadow:0 4px 12px rgba(201,169,110,0.15)}
+  .option-card.selected{border-color:#c9a96e;background:linear-gradient(135deg,#fdf8ee,#fef5e0);box-shadow:0 3px 14px rgba(201,169,110,0.25)}
+  .option-card .opt-emoji{font-size:30px;display:block;margin-bottom:8px}
+  .option-card .opt-label{font-size:13px;font-weight:600;color:#4a3728;line-height:1.4}
+  .option-card .opt-check{display:none;position:absolute;top:6px;right:8px;color:#27ae60;font-size:16px;font-weight:700}
+  .option-card.selected .opt-check{display:block}
+  .prompt-live{white-space:pre-wrap;font-size:14px;color:#555;line-height:1.9;font-family:'Noto Sans SC',sans-serif}
+  .prompt-live .filled{color:#8b6914;font-weight:500;background:#fdf6ee;padding:1px 6px;border-radius:4px}
+  .prompt-live .placeholder{color:#ccc;font-style:italic}
+  .prompt-status{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:13px}
+  .prompt-status .done{color:#27ae60;font-weight:600}
+  .prompt-status .pending{color:#e67e22}
+  .progress-bar{height:6px;background:#eee;border-radius:3px;overflow:hidden;margin:10px 0}
+  .progress-fill{height:100%;background:linear-gradient(90deg,#c9a96e,#8b6914);border-radius:3px;transition:width 0.4s ease}
+  @media(max-width:480px){.q-options{gap:8px}.option-card{min-width:calc(50% - 8px);padding:12px 8px}.option-card .opt-emoji{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="title">如梦令</div>
+    <div class="poem">
+      <div class="poem-line">
+        <span class="char-box"><span class="py">cháng</span><span class="hz">常</span></span><span class="char-box"><span class="py">jì</span><span class="hz">记</span></span><span class="char-box"><span class="py">xī</span><span class="hz">溪</span></span><span class="char-box"><span class="py">tíng</span><span class="hz">亭</span></span><span class="char-box"><span class="py">rì</span><span class="hz">日</span></span><span class="char-box"><span class="py">mù</span><span class="hz">暮</span></span><span class="punc">,</span><span class="char-box"><span class="py">chén</span><span class="hz">沉</span></span><span class="char-box"><span class="py">zuì</span><span class="hz">醉</span></span><span class="char-box"><span class="py">bù</span><span class="hz">不</span></span><span class="char-box"><span class="py">zhī</span><span class="hz">知</span></span><span class="char-box"><span class="py">guī</span><span class="hz">归</span></span><span class="char-box"><span class="py">lù</span><span class="hz">路</span></span><span class="punc">。</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">xìng</span><span class="hz">兴</span></span><span class="char-box"><span class="py">jìn</span><span class="hz">尽</span></span><span class="char-box"><span class="py">wǎn</span><span class="hz">晚</span></span><span class="char-box"><span class="py">huí</span><span class="hz">回</span></span><span class="char-box"><span class="py">zhōu</span><span class="hz">舟</span></span><span class="punc">,</span><span class="char-box"><span class="py">wù</span><span class="hz">误</span></span><span class="char-box"><span class="py">rù</span><span class="hz">入</span></span><span class="char-box"><span class="py">ǒu</span><span class="hz">藕</span></span><span class="char-box"><span class="py">huā</span><span class="hz">花</span></span><span class="char-box"><span class="py">shēn</span><span class="hz">深</span></span><span class="char-box"><span class="py">chù</span><span class="hz">处</span></span><span class="punc">。</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">zhēng</span><span class="hz">争</span></span><span class="char-box"><span class="py">dù</span><span class="hz">渡</span></span><span class="punc">,</span><span class="char-box"><span class="py">zhēng</span><span class="hz">争</span></span><span class="char-box"><span class="py">dù</span><span class="hz">渡</span></span><span class="punc">,</span><span class="char-box"><span class="py">jīng</span><span class="hz">惊</span></span><span class="char-box"><span class="py">qǐ</span><span class="hz">起</span></span><span class="char-box"><span class="py">yī</span><span class="hz">一</span></span><span class="char-box"><span class="py">tān</span><span class="hz">滩</span></span><span class="char-box"><span class="py">ōu</span><span class="hz">鸥</span></span><span class="char-box"><span class="py">lù</span><span class="hz">鹭</span></span><span class="punc">。</span>
+      </div>
+      <div class="author">— 宋 · 李清照</div>
+    </div>
+    <div class="sub">陪女儿读 122 篇古诗文 · 第1篇 · <span style="color:#8e44ad">李清照（1/2）</span></div>
+
+    <div style="text-align:center;margin-top:20px">
+      <img src="如梦令沐言注.png" alt="可心 · 沐言注" style="width:100%;max-width:640px;border-radius:14px;box-shadow:0 6px 28px rgba(0,0,0,0.12)">
+    </div>
+    </div>
+  </div>
+
+
+  <!-- 李清照双轴图鉴 -->
+  <div class="life-map">
+    <h3>李清照生平 × 时代背景</h3>
+    <div class="subtitle">左边看"谁" · 右边看"天" — 一个人的命运，是被时代推着走的</div>
+    <div class="dual-col">
+      <div class="col-left">
+        <div class="col-header">📜 李清照的一生<br><span style="font-size:11px;font-weight:400">司马迁视角 · 看个人</span></div>
+        <div class="dual-tl">
+          <div class="tl-row"><div class="tl-year">1084</div><div class="tl-event">生于济南章丘 · 父李格非 · 母王氏</div></div>
+          <div class="tl-row"><div class="tl-year star">1099</div><div class="tl-event peak"><span class="mark">⭐</span> 十六岁 · 汴京 · 写《如梦令》<span class="dual-tag personal">今日</span></div></div>
+          <div class="tl-row"><div class="tl-year">1101</div><div class="tl-event">十八岁 · 嫁赵明诚 · 神仙眷侣</div></div>
+          <div class="tl-row"><div class="tl-year">1102-1126</div><div class="tl-event">18-42岁 · 汴京青州 · 金石收藏 · 赌书泼茶</div></div>
+          <div class="tl-row"><div class="tl-year">1127</div><div class="tl-event">四十三岁 · 举家南逃 · 收藏散落</div></div>
+          <div class="tl-row"><div class="tl-year">1129</div><div class="tl-event">四十五岁 · 赵明诚病逝 · 从此一人</div></div>
+          <div class="tl-row"><div class="tl-year">约1130</div><div class="tl-event">写《渔家傲》· 47岁<span class="dual-tag personal">下次相遇</span></div></div>
+          <div class="tl-row"><div class="tl-year">约1155</div><div class="tl-event">约七十二岁 · 卒</div></div>
+        </div>
+      </div>
+      <div class="col-right">
+        <div class="col-header">🎭 大宋的年表<br><span style="font-size:11px;font-weight:400">庄子视角 · 看天命</span></div>
+        <div class="dual-tl">
+          <div class="tl-row"><div class="tl-year">1085</div><div class="tl-event">宋神宗卒 · 哲宗即位 · 高太后摄政</div></div>
+          <div class="tl-row"><div class="tl-year star">1100</div><div class="tl-event peak">宋徽宗即位 · 重用蔡京 · <span class="dual-tag history">盛世幻象</span></div></div>
+          <div class="tl-row"><div class="tl-year">1100-1120</div><div class="tl-event">徽宗朝 · 书画盛世 · 《宣和画谱》· 花石纲 · 民怨暗涌</div></div>
+          <div class="tl-row"><div class="tl-year">1100-1125</div><div class="tl-event">北宋末年 · 辽国衰弱 · 金国崛起 · 联金灭辽</div></div>
+          <div class="tl-row"><div class="tl-year">1125</div><div class="tl-event">金灭辽 · 旋即南下侵宋</div></div>
+          <div class="tl-row"><div class="tl-year">1127</div><div class="tl-event">💔 靖康之变 · 徽钦二帝被掳 · 北宋灭亡</div></div>
+          <div class="tl-row"><div class="tl-year">1127-</div><div class="tl-event">南宋建立 · 赵构即位 · 偏安江南</div></div>
+          <div class="tl-row"><div class="tl-year">1141</div><div class="tl-event">绍兴和议 · 宋金对峙 · 岳飞冤死</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 司马迁 × 庄子 · 122首中的位置 -->
+  <div class="prose-section" style="border-left-color:#c9a96e">
+    <h4>📜🎭 司马迁 × 庄子 · 合论</h4>
+    <div class="prose-text">
+      <p>在122篇古诗文中，李清照出现了<span class="highlight">2次</span>。今天是第1次。</p>
+      <p>这首《如梦令》是122首里极少数"<span class="highlight">写快乐</span>"的词——它不写离别、不写战场、不写失意，只写一个少女划船忘了回家。司马迁会说：<strong>这首词写于她人生的极盛期，那时她16岁，汴京还在，天下还没塌，她连"失去"是什么都不知道。</strong></p>
+      <p>第2次遇到她，是《渔家傲·天接云涛连晓雾》，47岁，写于南渡流亡中。庄子会说：<strong>16岁到47岁，这31年间她经历了一个王朝的覆灭、一个家庭的天翻地覆——个人命运被时代裹挟，没有人能独立于历史之外。</strong></p>
+      <p><span class="highlight">两首词在122首中相距很远——从第1次到第2次，中间隔了几十首其他诗人的作品。但等你下次读到《渔家傲》的时候，回头一看，会想起今天——那个划船忘了回家的小姐姐，她那时还不知道自己的人生会变成什么样。</span></p>
+    </div>
+  </div>
+
+  <!-- 宋朝版图 -->
+  <div class="life-map">
+    <h3>宋朝版图 · 词踪</h3>
+    <div class="subtitle">北宋政和元年（1111年）疆域 · 标注李清照两首词的地理位置</div>
+    <div class="map-wrapper">
+      <div class="map-wrapper" style="text-align:center">
+        <img src="宋朝版图.png" alt="北宋政和元年疆域图" style="width:100%;max-width:660px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.1)">
+      </div>
+    </div>
+  </div>
+
+  <!-- Workflow -->
+  <div class="workflow">
+    <span class="step">📜 司马迁</span><span class="arrow">→</span>
+    <span class="step">🎭 庄子</span><span class="arrow">→</span>
+    <span class="step">🖋️ 苏轼</span><span class="arrow">→</span>
+    <span class="step">🌟 达哥</span><span class="arrow">→</span>
+    <span class="step">📝 命题人</span><span class="arrow">→</span>
+    <span class="step gate">🔍 史官</span><span class="arrow">→</span>
+    <span class="step">🎨 顾恺之</span>
+  </div>
+
+  <div class="experts">
+
+    <!-- 1. 历史学家 -->
+    <div class="expert creator">
+      <div class="expert-header">
+        <div class="expert-icon" style="background:linear-gradient(135deg,#2c3e50,#34495e)">📜</div>
+        <div class="expert-meta"><div class="expert-name">司马迁</div><div class="expert-role">史家之绝唱 · 无韵之离骚</div></div>
+      </div>
+      <div class="expert-body">
+
+        <strong>诗人全貌</strong><br>
+        李清照在122篇里出现了<span class="highlight">2次</span>。今天是第1次遇到她。下次还会遇到——第2首是《渔家傲·天接云涛连晓雾》，写于完全不同的年代。
+        <br><br>
+
+        <strong>时间轴</strong>
+        <div class="timeline">
+          <span class="tl-node">1084(生) →</span>
+          <span class="tl-node">1099(16岁·汴京) →</span>
+          <span class="tl-star">⭐ 如梦令</span>
+          <span class="tl-node">→ 1101(18岁·嫁赵明诚) →</span>
+          <span class="tl-node">1102-1126(18-42岁·神仙眷侣·收藏金石书画) →</span>
+          <span class="tl-node">1127(43岁·靖康之变·北宋亡) →</span>
+          <span class="tl-node">1129(45岁·赵明诚病逝于赴任途中) →</span>
+          <span class="tl-node">1130(46岁·南渡流亡) →</span>
+          <span class="tl-future">○ 渔家傲</span>
+          <span class="tl-node">→ 1155(约72岁·卒)</span>
+        </div>
+        <br>
+
+        <strong>今天这首的时代背景</strong><br>
+        李清照写这首词时大概十六七岁，住在北宋京城汴京——当时全世界最繁华的城市。父亲李格非是苏轼学生，母亲出身宰相世家。女孩子读书识字并不稀奇，她从小泡在书堆里。
+        <br><br>
+        更重要的是：<span class="highlight">宋徽宗刚即位不久，大宋还沉浸在太平盛世的幻觉里。没有人知道二十多年后金兵铁骑会踏破汴京。</span>她不知道自己站在一个时代的尾巴上。
+      </div>
+    </div>
+
+    <!-- 2. 命运观察者 -->
+    <div class="expert creator">
+      <div class="expert-header">
+        <div class="expert-icon" style="background:linear-gradient(135deg,#8e44ad,#9b59b6)">🎭</div>
+        <div class="expert-meta"><div class="expert-name">庄子</div><div class="expert-role">子非鱼 · 安知鱼之乐</div></div>
+      </div>
+      <div class="expert-body">
+
+        <strong>创作时间轴（李清照在122首中的全部节点）</strong>
+        <div class="timeline">
+          <span class="tl-node">👧 1084(出生) →</span>
+          <span class="tl-star">⭐ 如梦令</span>
+          <span class="tl-node">约1099 · 16岁 · 上升期 · 天国少女 →</span>
+          <span class="tl-node">1101(18岁·嫁给赵明诚) →</span>
+          <span class="tl-node">1102-1126(18-42岁·汴京青州·神仙眷侣·金石收藏) →</span>
+          <span class="tl-node">💔 1127(43岁·靖康之变·国破) →</span>
+          <span class="tl-node">1129(45岁·赵明诚病逝·家亡) →</span>
+          <span class="tl-node">1130-1155(46-72岁·南渡流亡·孤身一人) →</span>
+          <span class="tl-future">○ 渔家傲</span>
+          <span class="tl-node">约1130 · 47岁 · 坠落期 · 孤舟漂泊 →</span>
+          <span class="tl-node">🕊️ 1155(约72岁·卒)</span>
+        </div>
+        <br>
+
+        <strong>今天这个节点</strong><br>
+        <span class="highlight">如梦令 · 16岁 · 处于"人生的极盛期"</span>——她还不知道后面的路。她是汴京城最受宠的贵族少女，日子好到她只记得哪天划船玩疯了、迷路了、鸟飞了。
+        <br><br>
+
+        <strong>命运的反差（连接未来）</strong><br>
+        几十年后——靖康之变，金兵南下，北宋灭亡，丈夫病逝于赴任途中。她带着半生收藏一路南逃，晚年孤身一人。
+        <br><br>
+        回头看这首词——<span class="highlight">那个黄昏、那叶小舟、那滩飞起的鸥鹭，是她一生最幸福时光里随手拍下的一张快照。她当时不知道自己在天堂。</span>
+        <br><br>
+
+        <strong>下一次相遇</strong><br>
+        等我们讲到《渔家傲》时，已经是47岁的李清照了。从16岁划船划到荷花深处，到47岁一个人在风浪里漂泊——<span class="highlight">同一个人，相隔30年，像两个世界。</span>到时候你可以跟可心说："还记得那个划船忘了回家的小姐姐吗？30年后的她，在风口浪尖上问自己能去哪里。"
+      </div>
+    </div>
+
+    <!-- 文学品鉴 · 集前两位之精华，评辞章之美 -->
+    <div class="expert creator">
+      <div class="expert-header">
+        <div class="expert-icon" style="background:linear-gradient(135deg,#c0392b,#e74c3c)">🖋️</div>
+        <div class="expert-meta"><div class="expert-name">苏轼</div><div class="expert-role">文忠公 · 千古文章四大家</div></div>
+      </div>
+      <div class="expert-body">
+        这首词最大的魔力是四个字——<span class="highlight">"像没写一样"</span>。
+        <br><br>
+        整首词不是在"描述"，是在"回忆"。你读的时候感觉不是在读一首词，是坐在李清照旁边，听她随口说起了一个黄昏。
+        <br><br>
+        "沉醉不知归路"——五个字写尽了那种忘我的快乐。"争渡争渡"的重复——你几乎能听到船桨慌乱拍打水面的声音。<span class="highlight">"惊起一滩鸥鹭"收得太漂亮——画面突然从荷塘的静升到天空的动，白色翅膀铺满画面，词尽了，鸟还在飞。</span>
+      </div>
+    </div>
+
+    <!-- 4. 亲子共读向导 -->
+    <div class="expert creator">
+      <div class="expert-header">
+        <div class="expert-icon" style="background:linear-gradient(135deg,#16a085,#1abc9c)">🌟</div>
+        <div class="expert-meta"><div class="expert-name">达哥共读</div><div class="expert-role">此心安处是吾乡</div></div>
+      </div>
+      <div class="expert-body">
+        <strong>讲给可心听：</strong><br>
+        李清照写这首诗的时候，跟你差不多大，比你的大姐姐大几岁。她说：我记得有一天下午，在溪边的亭子里玩得太开心了，忘了回家。天快黑了才想起划船走，结果不小心跑到一大片荷花中间去了！我着急地划呀划，结果把一群大鸟给吓飞了，扑棱棱飞满了天。像不像你放学跟同学玩得忘了时间，然后慌慌张张回家的样子？
+        <br><br>
+        <strong>跟可心聊：</strong><br>
+        1. 你记得自己最开心的一次玩到忘了时间是什么时候吗？<br>
+        2. 如果李清照30年后想起这个黄昏，她会想回去吗？<br>
+        3. <span class="highlight">预告：</span>我们以后还会遇到李清照——那时候她47岁了，不是划船玩疯了的少女了。你猜她变成什么样子了？
+      </div>
+    </div>
+
+    <!-- 审查员 -->
+    <div class="divider"><div class="divider-line"></div><div class="divider-text">▼ 史官审核 ▼</div><div class="divider-line"></div></div>
+
+    <div class="expert reviewer">
+      <div class="expert-header">
+        <div class="expert-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">🔍</div>
+        <div class="expert-meta"><div class="expert-name">史官</div><div class="expert-role">秉笔直书 · 信史可传</div></div>
+      </div>
+      <div class="expert-body">
+
+        <div style="margin-bottom:12px;font-size:14px;color:#555;line-height:1.9">
+          <strong>审核范围：</strong>历史学家、命运观察者、文学品鉴、亲子共读向导四位专家的全部输出内容。
+        </div>
+
+        <!-- 事实核查 -->
+        <div style="font-weight:600;font-size:13px;color:#4a3728;margin-bottom:8px">📋 事实核查（司马迁 + 苏轼）</div>
+        <div class="audit-block">
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">年龄</div>
+              李清照生于1084年，《如梦令》创作时间学界主流认为是1099年前后（十六七岁），属合理推断。备查：也有学者认为18-19岁婚后回忆之作，但都在合理范围内。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">父亲李格非</div>
+              确为苏轼学生，"苏门后四学士"之一，有史可查。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">母亲王氏</div>
+              确出身宰相世家，外祖父王珪为宋神宗宰相，有史可查。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">汴京繁华</div>
+              北宋汴京确为当时世界最大城市，人口超百万，史料可查。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">时间轴准确性</div>
+              李清照生于1084年，约1099年（16岁）写《如梦令》，1101年（18岁）嫁赵明诚，1127年（43岁）靖康之变，1129年赵明诚病逝，约1130年写《渔家傲》（南渡后），约1155年卒。时间轴节点的年龄标注均与学界主流吻合。备查：《渔家傲》具体创作年份学界有争议，有的认为在1130年前后建康所作，但"南渡后·47岁左右"属合理范围。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">靖康之变</div>
+              1127年金兵攻破汴京，北宋灭亡。词写于约1099年，距靖康之变约28年，"二十多年后"表述准确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">122首内重复篇目</div>
+              李清照在122首中共2篇：《如梦令》和《渔家傲》，与PDF目录核对一致。时间轴上⭐标注了今天的诗，○标注了还没讲到的《渔家傲》，标注准确，无遗漏。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">赵明诚之死</div>
+              赵明诚死于1129年（靖康之变后两年），原文已修正为"病逝于赴任途中"，事实准确。
+            </div>
+          </div>
+          <div class="audit-item fix">
+            <span class="audit-icon">*</span>
+            <div>
+              <div class="audit-target">文学品鉴的评价主观性声明</div>
+              "像没写一样""词尽了鸟还在飞"属个人感受和文学批评范畴，非事实错误。主观评价本身合理，不存在误导。✅ 保留原文不做修改。
+            </div>
+          </div>
+        </div>
+
+        <!-- 拼音审核 -->
+        <div style="font-weight:600;font-size:13px;color:#4a3728;margin:16px 0 8px">🔤 拼音审核（字词注音准确性）</div>
+        <div class="audit-block">
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">兴(xìng) — 最易读错的字</div>
+              此处"兴"表示兴致、兴趣，指游玩尽兴而归，应读 xìng（第四声），不读 xīng（第一声）。若读 xīng 则为兴起之意，与词意不符。✅ 注音正确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">尽(jìn)</div>
+              兴致用完了、玩够了。读 jìn（第四声），表示完结。✅ 正确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">回(huí)</div>
+              返回，阳平（第二声）。✅ 正确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">误(wù)</div>
+              去声（第四声），错误地、不小心地。✅ 正确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">藕(ǒu)</div>
+              上声（第三声），莲花的地下茎。✅ 正确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">处(chù)</div>
+              此处表示地方、位置，应读 chù（第四声），不读 chǔ（第三声，表示处理）。✅ 正确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">一(yī)</div>
+              此处"一"后接第一声 tān，"一"保持第一声 yī，不发生变调。✅ 注音正确。（"一"仅在第四声前变 yí，如"一个"yí gè；在第一二三声前均读 yī。）
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">滩(tān)</div>
+              第一声。✅ 正确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">鸥(ōu)</div>
+              第一声。✅ 正确。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">鹭(lù)</div>
+              去声，白鹭。✅ 正确。
+            </div>
+          </div>
+          <div class="audit-item fix">
+            <span class="audit-icon">*</span>
+            <div>
+              <div class="audit-target">拼音全文巡检出1处瑕疵</div>
+              全词33个字，逐个比对《广韵》《现代汉语词典》读音规范。"晚(wǎn)"注音正确（上声，第三声）；"争(zhēng)"注音正确。全体33字字音准确，<strong>仅建议1处语言常识补充：</strong>古人朗读时"不"字在第四声前可变读 bú（如"不是"读 bú shì），本词中"不"后接"知（zhī，第一声）"，保持 bù 即可，标准普通话拼音标注 bù 正确无误。"沉醉"意为沉醉于景物玩乐而非真酒醉，字音与词意对应准确。
+            </div>
+          </div>
+        </div>
+
+        <!-- 价值观审核 -->
+        <div style="font-weight:600;font-size:13px;color:#4a3728;margin:16px 0 8px">🛡️ 价值观审核（庄子 + 达哥共读）</div>
+        <div class="audit-block">
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">命运反差叙述</div>
+              用真实历史命运而非说教来讲道理，让孩子自己感受而非被动接受——这是正确的教育方式。无负面暗示。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">亲子问答设计</div>
+              两个问题均为开放式提问，引导孩子表达自己而非考察标准答案，符合儿童心理发展规律，健康积极。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">"人最好的日子常常是过完了才知道"</div>
+              钩子句引导珍惜当下的意识，不过度悲情，不传递消极价值观。对10岁孩子，理解"快乐会过去所以值得记住"是健康的成长课题。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">翻译给孩子的语言</div>
+              用"像不像你放学跟同学玩得忘了时间"做比喻，贴近孩子生活经验，无成人化说教、无恐吓式表达。
+            </div>
+          </div>
+          <div class="audit-item pass">
+            <span class="audit-icon">✓</span>
+            <div>
+              <div class="audit-target">用词柔和度</div>
+              原文已修正为"晚年孤身一人"，保留真实但不制造焦虑，对10岁孩子合适。✅ 通过。
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;padding:12px;background:#f0faf4;border-radius:8px;font-size:13px;color:#27ae60;line-height:1.7">
+          <strong>史官结论：准予放行，交由插画师。</strong><br>
+          事实核查 + 拼音审核 + 时间轴准确性 + 价值观审核：<span style="color:#27ae60;font-weight:700">全部通过</span>。122首内篇目数（李清照×2）与PDF目录一致，时间轴各节点有史可查，用语适合10岁儿童，"下一次相遇"的预告为《渔家傲》埋下期待。
+        </div>
+      </div>
+    </div>
+
+    <!-- 顾恺之 × 可心 -->
+    <div class="divider"><div class="divider-line"></div><div class="divider-text">▼ 审核通过 · 可心入画 ▼</div><div class="divider-line"></div></div>
+
+  </div>
+
+  <div class="kexin-dialogue" id="kexinDialogue">
+    <h3>🎨 顾恺之 × 可心</h3>
+    <div class="intro">学完了这首诗，<strong>现在你是画师</strong>。点一点下面的选项，告诉顾恺之爷爷你心里的画面。<br>"以形写神"——不只画像，还要画出心里的感觉。</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="prompt-status"><span id="statusText" class="pending">还有 5 个问题等你选</span></div>
+
+    <div class="q-item">
+      <div class="q-avatar">🎨</div>
+      <div class="q-text">
+        <div class="q-label">第 1 问</div>
+        <div class="q-ask">「你觉得这首词是什么颜色的？」</div>
+        <p>读完"常记溪亭日暮，沉醉不知归路"，你看到的是什么颜色？</p>
+        <div class="q-options" data-q="1">
+          <div class="option-card" data-value="金色暖阳" data-prompt="以金色、橙色为主色调，温暖的夕阳色，像蜂蜜洒在水面上" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🌅</span><span class="opt-label">金色暖阳</span></div>
+          <div class="option-card" data-value="粉紫黄昏" data-prompt="粉色与紫色渐变，像黄昏天空的颜色，温柔又梦幻" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🌸</span><span class="opt-label">粉紫黄昏</span></div>
+          <div class="option-card" data-value="翠绿荷塘" data-prompt="翠绿色为底，荷叶和湖水的颜色，清新自然" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">💚</span><span class="opt-label">翠绿荷塘</span></div>
+          <div class="option-card" data-value="蓝灰水墨" data-prompt="蓝灰色调的水墨画风格，淡雅素净，像宣纸上的墨色晕开" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🌊</span><span class="opt-label">蓝灰水墨</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-avatar">🎨</div>
+      <div class="q-text">
+        <div class="q-label">第 2 问</div>
+        <div class="q-ask">「如果只能画一个东西，你画什么？」</div>
+        <p>只能选一个——你最想让看画的人第一眼看到什么？</p>
+        <div class="q-options" data-q="2">
+          <div class="option-card" data-value="划船的女孩" data-prompt="画面核心是一位宋代少女坐在船头划桨的背影，是整幅画的视觉焦点" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🚣</span><span class="opt-label">划船的女孩</span></div>
+          <div class="option-card" data-value="飞起的白鸟" data-prompt="画面核心是一群白鹭猛然飞起的瞬间，翅膀铺满画面上方，充满动感" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🕊️</span><span class="opt-label">飞起的白鸟</span></div>
+          <div class="option-card" data-value="大片荷花" data-prompt="画面核心是漫天遍地的荷花，粉白色花瓣层层叠叠，小船藏在花丛中" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🌺</span><span class="opt-label">大片荷花</span></div>
+          <div class="option-card" data-value="黄昏的太阳" data-prompt="画面核心是一轮巨大的落日悬在天边，把整个湖面染成金色" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🌅</span><span class="opt-label">黄昏的太阳</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-avatar">🎨</div>
+      <div class="q-text">
+        <div class="q-label">第 3 问</div>
+        <div class="q-ask">「如果你在画里，你在哪？」</div>
+        <p>你想从什么角度来看这个故事？</p>
+        <div class="q-options" data-q="3">
+          <div class="option-card" data-value="我就是那个女孩" data-prompt="第一人称视角，观众透过女孩的眼睛看到眼前的荷花和飞鸟" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">👧</span><span class="opt-label">我就是她</span></div>
+          <div class="option-card" data-value="在岸边看着她" data-prompt="从溪亭方向远望，能看到女孩在荷花中划船的全景" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">👀</span><span class="opt-label">在岸边看着她</span></div>
+          <div class="option-card" data-value="我是飞起来的鸟" data-prompt="鸟瞰视角，从飞起的白鹭中俯视水面上的小船和荷花" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🐦</span><span class="opt-label">我是那只鸟</span></div>
+          <div class="option-card" data-value="在画外面看" data-prompt="传统卷轴画的全知视角，像展开一幅画卷，看到整个场景" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🖼️</span><span class="opt-label">在画外面看</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-avatar">🎨</div>
+      <div class="q-text">
+        <div class="q-label">第 4 问</div>
+        <div class="q-ask">「这幅画有声音吗？」</div>
+        <p>闭上眼睛听——你觉得这幅画里有什么声音？</p>
+        <div class="q-options" data-q="4">
+          <div class="option-card" data-value="水声和船桨声" data-prompt="画面要传达出水的流动感，船桨划过水面泛起的涟漪要细致可见" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">💧</span><span class="opt-label">水声和船桨声</span></div>
+          <div class="option-card" data-value="翅膀扑打的声音" data-prompt="白鹭展翅的动态要特别生动，羽毛细节清晰，翅膀带起水花" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🦢</span><span class="opt-label">翅膀扑打声</span></div>
+          <div class="option-card" data-value="风吹荷花沙沙声" data-prompt="荷花和荷叶在微风中轻轻摇曳，叶片边缘有细微的波动" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🍃</span><span class="opt-label">风吹荷花声</span></div>
+          <div class="option-card" data-value="什么声音都没有" data-prompt="极其静谧的氛围，仿佛时间凝固在这一刻，只有光影在移动" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🤫</span><span class="opt-label">安安静静的</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-avatar">🎨</div>
+      <div class="q-text">
+        <div class="q-label">第 5 问</div>
+        <div class="q-ask">「读了李清照的一生，这幅画应该多一点点什么？」</div>
+        <p>知道了她后来的故事，再回头看这幅画——</p>
+        <div class="q-options" data-q="5">
+          <div class="option-card" data-value="满满的快乐" data-prompt="整幅画洋溢着纯粹的快乐，画面明亮饱满，少女的笑容灿烂无忧" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">😊</span><span class="opt-label">满满的快乐</span></div>
+          <div class="option-card" data-value="快乐里藏着不知道会失去的感觉" data-prompt="画面整体欢快，但天边有一抹将暗的光，暗示这份美好终将消逝——明亮中藏着一丝隐约的告别感" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">💭</span><span class="opt-label">快乐里藏一丝不舍</span></div>
+          <div class="option-card" data-value="像美梦醒来前的感觉" data-prompt="画面如同一场即将醒来的梦境，边缘微微发虚发亮，中心清晰温暖——美好到不太真实" onclick="selectOption(this)"><span class="opt-check">✓</span><span class="opt-emoji">🌈</span><span class="opt-label">像美梦将醒</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signature-area">
+      <div class="seal">沐<br>言<br>注</div>
+      <div class="caption">沐言注 · 这幅画里有我读完这首诗之后心里的样子</div>
+    </div>
+  </div>
+
+  <div class="image-section" id="imageSection">
+    <h3>🖼️ 可心的专属插画提示词 <span style="font-size:12px;color:#999;font-weight:400">— 点完选项自动生成 · 复制发给 ChatGPT</span></h3>
+    <div class="post-audit">史官审核通过 · 可心亲手选 · 交付顾恺之</div>
+    <div class="progress-bar"><div class="progress-fill" id="promptProgress" style="width:0%"></div></div>
+    <div class="prompt-status"><span id="promptStatus" class="pending">选完 5 个问题后自动生成完整提示词</span></div>
+    <div class="prompt-box" id="prompt">
+      <span class="label">可心的插画提示词</span>
+      <div class="prompt-live" id="promptLive">竖版插画，3:4比例，适合小红书发布。中国宋代水墨画风格与现代绘本结合。
+
+色调：<span class="placeholder" id="p1">👆 回到第1问选一个颜色</span>
+画面核心：<span class="placeholder" id="p2">👆 回到第2问选画什么</span>
+视角：<span class="placeholder" id="p3">👆 回到第3问选你在哪</span>
+声音感：<span class="placeholder" id="p4">👆 回到第4问选声音</span>
+
+基础画面：黄昏时分，大片荷花盛开的湖面上，一艘小木舟被荷花丛包围。一位十六七岁的宋代少女坐在船头划桨。一群白鹭猛然飞起，飞向正在变暗的天空。远处溪边小亭子，夕阳余晖。远处隐约汴京城郭的剪影。
+
+<span class="placeholder" id="p5">👆 回到第5问选情绪</span>
+
+文字设计：画面留白区域行书竖排"误入藕花深处"。底部小字横排"宋 · 李清照 | 如梦令"，右下角朱红小字竖排"沐言注"。</div>
+    </div>
+    <button class="copy-btn" id="copyBtn" onclick="copyPrompt()" disabled style="opacity:0.5">选完 5 个问题后可复制</button>
+    <span class="copy-ok" id="ok">已复制 ✓</span>
+  </div>
+
+  <!-- Five Grid -->
+  <div class="five-grid">
+    <h4>🧩 填入五格模板（审查通过版）</h4>
+    <div class="grid-item"><div class="grid-num">①</div><div class="grid-text"><strong>扳机</strong>：写于李清照少女时，日子好到只用记得"哪天划船玩疯了"。</div></div>
+    <div class="grid-item"><div class="grid-num">②</div><div class="grid-text"><strong>背景（人/处境）</strong>：北宋第一才女，16岁，汴京贵族少女。大宋的太阳还挂在天上。赵明诚后来病逝于赴任途中。<br><span style="font-size:12px;color:#999">时间轴：⭐如梦令(16岁) —→ 30年后 —→ ○渔家傲(47岁)</span></div></div>
+    <div class="grid-item"><div class="grid-num">③</div><div class="grid-text"><strong>命运的反差（主菜）</strong>：几十年后靖康之变→国破家亡→夫死→收藏散尽。这首词是她一生最幸福时光的快照。下次遇到她已是47岁的《渔家傲》——同一个人，相隔30年，像两个世界。</div></div>
+    <div class="grid-item"><div class="grid-num">④</div><div class="grid-text"><strong>给可心的问题</strong>：你记得自己最开心的一次玩到忘了时间吗？如果李清照后来想起这个黄昏，她会想回去吗？</div></div>
+    <div class="grid-item"><div class="grid-num">⑤</div><div class="grid-text"><strong>钩子</strong>：<em>"人最好的日子，常常是过完了才知道的。"</em></div></div>
+  </div>
+
+  <script>
+    const selections = {};
+    const totalQ = 5;
+
+    function selectOption(el) {
+      const group = el.parentElement;
+      const q = group.dataset.q;
+      group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selections[q] = { value: el.dataset.value, prompt: el.dataset.prompt };
+      updatePrompt();
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const count = Object.keys(selections).length;
+      const pct = (count / totalQ) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('promptProgress').style.width = pct + '%';
+      const remaining = totalQ - count;
+      const st = document.getElementById('statusText');
+      const ps = document.getElementById('promptStatus');
+      if (remaining === 0) {
+        st.className = 'done';
+        st.textContent = '\u2713 全部选好了！看看下面生成的提示词';
+        ps.className = 'done';
+        ps.textContent = '\u2713 提示词已生成！复制发给 ChatGPT 生成插画';
+        const btn = document.getElementById('copyBtn');
+        btn.disabled = false; btn.style.opacity = '1'; btn.textContent = '复制提示词';
+        document.getElementById('imageSection').scrollIntoView({behavior:'smooth',block:'center'});
+      } else {
+        st.className = 'pending';
+        st.textContent = '还有 ' + remaining + ' 个问题等你选';
+        ps.className = 'pending';
+        ps.textContent = '还差 ' + remaining + ' 个问题';
+      }
+    }
+
+    function updatePrompt() {
+      for (let i = 1; i <= totalQ; i++) {
+        const el = document.getElementById('p' + i);
+        if (selections[i]) {
+          el.className = 'filled';
+          el.textContent = selections[i].prompt;
+        }
+      }
+    }
+
+    function copyPrompt() {
+      if (Object.keys(selections).length < totalQ) return;
+      const text = document.getElementById('promptLive').innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        const ok = document.getElementById('ok');
+        ok.style.display = 'inline';
+        setTimeout(function() { ok.style.display = 'none'; }, 2000);
+      });
+    }
+  </script>
+
+</div>
+</body>
+</html>

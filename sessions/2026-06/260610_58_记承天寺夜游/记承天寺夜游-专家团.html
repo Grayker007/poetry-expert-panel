@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>记承天寺夜游 · 苏轼</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans SC',sans-serif;background:#f7f3eb;color:#333;line-height:1.8;min-height:100vh}
+  .page{max-width:860px;margin:0 auto;padding:24px 20px 80px}
+  .header{text-align:center;padding:32px 0 24px}
+  .header .title{font-family:'Noto Serif SC',serif;font-size:30px;font-weight:900;color:#4a3728;letter-spacing:6px}
+  .header .author{font-size:14px;color:#a08560;margin-top:6px}
+  .header .sub{font-size:13px;color:#a08560;margin-top:4px}
+  .poem-box{background:rgba(255,255,255,0.5);border-radius:14px;padding:24px 16px;max-width:700px;margin:16px auto 0}
+  .poem-box .note{font-size:12px;color:#999;text-align:center;margin-bottom:14px;line-height:1.6}
+  .poem-line{display:flex;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+  .char-box{display:inline-flex;flex-direction:column;align-items:center;width:36px;text-align:center}
+  .char-box .py{font-size:9px;color:#a08560;font-weight:400;line-height:1;margin-bottom:2px}
+  .char-box .hz{font-family:'Noto Serif SC',serif;font-size:18px;color:#8b6914;line-height:1.3}
+  .poem-line .punc{display:flex;align-items:flex-end;width:14px;text-align:center;font-size:16px;color:#8b6914;padding-bottom:3px}
+  .poem-line .gap{width:24px}
+  .workflow{display:flex;align-items:center;justify-content:center;gap:8px;margin:24px 0;flex-wrap:wrap;font-size:12px;color:#999}
+  .workflow .step{padding:4px 12px;border-radius:20px;background:#f5f0e8}
+  .workflow .arrow{color:#c9a96e;font-weight:700}
+  .workflow .step.gate{border:2px solid #e74c3c;background:#fff;color:#e74c3c;font-weight:700}
+  .life-map{background:#fff;border-radius:16px;padding:28px 24px 20px;margin:28px 0;box-shadow:0 3px 14px rgba(0,0,0,0.05)}
+  .life-map h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;text-align:center;margin-bottom:6px}
+  .life-map .subtitle{text-align:center;font-size:12px;color:#999;margin-bottom:20px}
+  .dual-col{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid #e8dcc8}
+  @media(max-width:600px){.dual-col{grid-template-columns:1fr}}
+  .dual-col .col-header{text-align:center;padding:12px 8px;font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:#fff}
+  .dual-col .col-left .col-header{background:linear-gradient(135deg,#2c3e50,#34495e)}
+  .dual-col .col-right .col-header{background:linear-gradient(135deg,#8e44ad,#9b59b6)}
+  .dual-tl{padding:8px 0}
+  .tl-row{display:flex;gap:0;min-height:44px;align-items:stretch;border-bottom:1px solid #f5f0e8}
+  .tl-row:last-child{border-bottom:none}
+  .tl-year{width:82px;text-align:center;font-size:10px;color:#888;padding:8px 4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:500}
+  .tl-year.star{color:#8b6914;font-weight:700;background:#fdf8ee}
+  .tl-event{flex:1;padding:8px 10px;font-size:12px;color:#555;display:flex;align-items:center;line-height:1.5}
+  .tl-event.peak{background:linear-gradient(135deg,#fdf8ee,#fffdf5);color:#8b6914;font-weight:600;border-left:3px solid #c9a96e}
+  .dual-tag{display:inline-block;font-size:9px;padding:1px 6px;border-radius:8px;margin-left:4px;white-space:nowrap}
+  .dual-tag.personal{background:#eaf2f8;color:#2c3e50;border:1px solid #2c3e5040}
+  .prose-section{background:#fff;border-radius:14px;padding:24px;margin:20px 0;box-shadow:0 2px 10px rgba(0,0,0,0.04);border-left:4px solid #c9a96e}
+  .prose-section.sima{border-left-color:#2c3e50}
+  .prose-section.zhuangzi{border-left-color:#8e44ad}
+  .prose-section h4{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#4a3728;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .prose-section .prose-text{font-size:14px;color:#555;line-height:1.9}
+  .prose-section .prose-text .highlight{background:#fdf6ee;padding:2px 6px;border-radius:4px;color:#8b6914;font-weight:500}
+  .expert{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.04);border-left:4px solid #c9a96e;margin-bottom:14px}
+  .expert-header{padding:16px 20px 0;display:flex;align-items:center;gap:12px}
+  .expert-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0}
+  .expert-meta{flex:1}
+  .expert-name{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;color:#4a3728}
+  .expert-role{font-size:12px;color:#999}
+  .expert-body{padding:12px 20px 20px;font-size:14px;color:#555;line-height:1.9}
+  .expert-body .highlight{background:#fdf6ee;padding:2px 6px;border-radius:4px;color:#8b6914;font-weight:500}
+  .expert.reviewer{border-left-color:#e74c3c;background:linear-gradient(135deg,#fff,#fff5f5)}
+
+  /* ① 锚点导航 */
+  .nav-bar{position:sticky;top:0;z-index:100;background:rgba(247,243,235,0.95);backdrop-filter:blur(10px);border-radius:14px;padding:8px 4px;margin:8px 0 16px;display:flex;justify-content:center;flex-wrap:wrap;gap:4px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border:1px solid #e8dcc8}
+  .nav-btn{font-size:11px;padding:6px 10px;border-radius:10px;background:transparent;color:#888;text-decoration:none;transition:all 0.2s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+  .nav-btn:hover{background:#fff;color:#4a3728;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+
+  /* ③ 进度条 */
+  .prog-bar{display:flex;align-items:center;gap:12px;padding:12px 18px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin:12px 0 20px;flex-wrap:wrap}
+  .prog-bar .label{font-size:12px;color:#888;white-space:nowrap}
+  .prog-bar .track{flex:1;height:8px;border-radius:4px;background:#f0ebe0;overflow:hidden;min-width:60px}
+  .prog-bar .fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#c9a96e,#e8dcc8)}
+  .prog-bar .next{font-size:11px;color:#bbb;white-space:nowrap}
+  .prog-bar .pt{font-size:10px;color:#999;white-space:nowrap;margin:0 4px}
+
+  /* ④ 命题人四色卡 */
+  .exam-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}
+  @media(max-width:550px){.exam-grid{grid-template-columns:1fr}}
+  .exam-card{border-radius:12px;padding:14px;font-size:13px;line-height:1.7}
+  .exam-card h5{font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .exam-card p{margin-bottom:4px}
+  .ec-blue{background:#eaf2f8;border-left:4px solid #2471a3}.ec-blue h5{color:#2471a3}
+  .ec-green{background:#e8f8f5;border-left:4px solid #0e6655}.ec-green h5{color:#0e6655}
+  .ec-orange{background:#fef9ef;border-left:4px solid #d35400}.ec-orange h5{color:#d35400}
+  .ec-red{background:#fef0ee;border-left:4px solid #c0392b}.ec-red h5{color:#c0392b}
+
+  /* ⑥ 跨篇时间轴 */
+  .cross-tl{background:#fff;border-radius:14px;padding:20px;margin:24px 0;box-shadow:0 2px 8px rgba(0,0,0,0.04);text-align:center}
+  .cross-tl .tl-bar{display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center;margin:12px 0 6px}
+  .cross-tl .dn{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .cross-tl .dd{background:#27ae60;color:#fff}
+  .cross-tl .dnw{background:#c9a96e;color:#fff;box-shadow:0 0 0 5px rgba(201,169,110,0.2);width:38px;height:38px;font-size:14px}
+  .cross-tl .df{background:#eee;color:#bbb}
+  .cross-tl .ta{color:#ddd;font-size:14px}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:8px 0}
+  .divider-line{flex:1;height:1px;background:#e8dcc8}
+  .divider-text{font-size:12px;color:#c9a96e;white-space:nowrap;font-weight:500}
+  .kexin-dialogue{background:linear-gradient(135deg,#fffdf5,#fef9f0);border-radius:16px;padding:28px 24px;margin:28px 0;box-shadow:0 3px 14px rgba(0,0,0,0.05);border:2px solid #e8dcc8}
+  .kexin-dialogue h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;text-align:center;margin-bottom:4px}
+  .kexin-dialogue .intro{text-align:center;font-size:13px;color:#999;margin-bottom:20px;line-height:1.6}
+  .q-item{background:#fff;border-radius:12px;padding:18px 20px;margin:12px 0;border-left:4px solid #d35400;box-shadow:0 1px 6px rgba(0,0,0,0.03)}
+  .q-item .q-text{font-size:14px;color:#555;line-height:1.7}
+  .q-item .q-label{font-size:11px;color:#d35400;font-weight:700;letter-spacing:2px;margin-bottom:4px}
+  .q-item .q-ask{font-family:'Noto Serif SC',serif;font-size:16px;color:#4a3728;font-weight:600;margin-bottom:8px}
+  .q-options{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .q-opt{font-size:13px;padding:8px 16px;border-radius:20px;border:2px solid #e8dcc8;background:#fff;color:#888;cursor:pointer;transition:all 0.2s;user-select:none}
+  .q-opt:hover{border-color:#d35400;color:#d35400}
+  .q-opt.picked{border-color:#d35400;background:#fef5f0;color:#d35400;font-weight:700;box-shadow:0 0 0 3px rgba(211,84,0,0.1)}
+  .q-pick{display:inline-block;font-size:10px;color:#27ae60;margin-left:4px;opacity:0;transition:opacity 0.2s}
+  .q-opt.picked .q-pick{opacity:1}
+  .signature-area{text-align:center;margin-top:24px;padding-top:20px;border-top:1px solid #e8dcc8}
+  .signature-area .seal{width:80px;height:80px;border:3px solid #c0392b;border-radius:8px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:18px;color:#c0392b;font-weight:700;writing-mode:vertical-rl;letter-spacing:4px;padding:8px;background:#fff0f0}
+  .signature-area .caption{font-size:12px;color:#999;margin-top:4px}
+  .image-section{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 10px rgba(0,0,0,0.04);margin:24px 0;border-left:4px solid #d35400}
+  .image-section h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;margin-bottom:6px}
+  .prompt-box{background:#fdf8ee;border:2px solid #e8dcc8;border-radius:12px;padding:18px 20px;font-size:14px;color:#555;line-height:1.9;white-space:pre-wrap;margin-bottom:16px}
+  .copy-btn{background:linear-gradient(135deg,#c9a96e,#8b6914);color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer}
+  .five-grid{background:#fdf8ee;border-radius:14px;padding:20px;margin-top:24px;border:1px solid #e8dcc8}
+  .five-grid h4{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#8b6914;margin-bottom:14px}
+  .grid-item{padding:10px 0;border-bottom:1px solid #eee;display:flex;gap:12px;font-size:14px}
+  .grid-item:last-child{border-bottom:none}
+  .grid-num{width:26px;height:26px;border-radius:50%;background:#c9a96e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+  .grid-text{color:#555;line-height:1.6}
+  .grid-text strong{color:#4a3728}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="title">记承天寺夜游</div>
+    <div class="author">— 北宋 · 苏轼</div>
+    <div class="poem-box">
+      <div class="note">全文仅<strong>85字</strong>，写于黄州贬所——这是苏轼人生的最低谷，却写出了最从容的文字</div>
+      <div class="poem-line"><span class="char-box"><span class="py">yuán</span><span class="hz">元</span></span><span class="char-box"><span class="py">fēng</span><span class="hz">丰</span></span><span class="char-box"><span class="py">liù</span><span class="hz">六</span></span><span class="char-box"><span class="py">nián</span><span class="hz">年</span></span><span class="char-box"><span class="py">shí</span><span class="hz">十</span></span><span class="char-box"><span class="py">yuè</span><span class="hz">月</span></span><span class="char-box"><span class="py">shí</span><span class="hz">十</span></span><span class="char-box"><span class="py">èr</span><span class="hz">二</span></span><span class="char-box"><span class="py">rì</span><span class="hz">日</span></span><span class="char-box"><span class="py">yè</span><span class="hz">夜</span></span><span class="punc">，</span></div>
+      <div class="poem-line"><span class="char-box"><span class="py">jiě</span><span class="hz">解</span></span><span class="char-box"><span class="py">yī</span><span class="hz">衣</span></span><span class="char-box"><span class="py">yù</span><span class="hz">欲</span></span><span class="char-box"><span class="py">shuì</span><span class="hz">睡</span></span><span class="punc">，</span><span class="char-box"><span class="py">yuè</span><span class="hz">月</span></span><span class="char-box"><span class="py">sè</span><span class="hz">色</span></span><span class="char-box"><span class="py">rù</span><span class="hz">入</span></span><span class="char-box"><span class="py">hù</span><span class="hz">户</span></span><span class="punc">，</span><span class="char-box"><span class="py">xīn</span><span class="hz">欣</span></span><span class="char-box"><span class="py">rán</span><span class="hz">然</span></span><span class="char-box"><span class="py">qǐ</span><span class="hz">起</span></span><span class="char-box"><span class="py">xíng</span><span class="hz">行</span></span><span class="punc">。</span></div>
+      <div class="poem-line"><span class="gap"></span></div>
+      <div class="poem-line"><span class="char-box"><span class="py">niàn</span><span class="hz">念</span></span><span class="char-box"><span class="py">wú</span><span class="hz">无</span></span><span class="char-box"><span class="py">yǔ</span><span class="hz">与</span></span><span class="char-box"><span class="py">wéi</span><span class="hz">为</span></span><span class="char-box"><span class="py">lè</span><span class="hz">乐</span></span><span class="char-box"><span class="py">zhě</span><span class="hz">者</span></span><span class="punc">，</span><span class="char-box"><span class="py">suì</span><span class="hz">遂</span></span><span class="char-box"><span class="py">zhì</span><span class="hz">至</span></span><span class="char-box"><span class="py">chéng</span><span class="hz">承</span></span><span class="char-box"><span class="py">tiān</span><span class="hz">天</span></span><span class="char-box"><span class="py">sì</span><span class="hz">寺</span></span><span class="char-box"><span class="py">xún</span><span class="hz">寻</span></span><span class="char-box"><span class="py">zhāng</span><span class="hz">张</span></span><span class="char-box"><span class="py">huái</span><span class="hz">怀</span></span><span class="char-box"><span class="py">mín</span><span class="hz">民</span></span><span class="punc">。</span></div>
+      <div class="poem-line"><span class="gap"></span></div>
+      <div class="poem-line"><span class="char-box"><span class="py">huái</span><span class="hz">怀</span></span><span class="char-box"><span class="py">mín</span><span class="hz">民</span></span><span class="char-box"><span class="py">yì</span><span class="hz">亦</span></span><span class="char-box"><span class="py">wèi</span><span class="hz">未</span></span><span class="char-box"><span class="py">qǐn</span><span class="hz">寝</span></span><span class="punc">，</span><span class="char-box"><span class="py">xiāng</span><span class="hz">相</span></span><span class="char-box"><span class="py">yǔ</span><span class="hz">与</span></span><span class="char-box"><span class="py">bù</span><span class="hz">步</span></span><span class="char-box"><span class="py">yú</span><span class="hz">于</span></span><span class="char-box"><span class="py">zhōng</span><span class="hz">中</span></span><span class="char-box"><span class="py">tíng</span><span class="hz">庭</span></span><span class="punc">。</span></div>
+      <div class="poem-line"><span class="gap"></span></div>
+      <div class="poem-line"><span class="char-box"><span class="py">tíng</span><span class="hz">庭</span></span><span class="char-box"><span class="py">xià</span><span class="hz">下</span></span><span class="char-box"><span class="py">rú</span><span class="hz">如</span></span><span class="char-box"><span class="py">jī</span><span class="hz">积</span></span><span class="char-box"><span class="py">shuĭ</span><span class="hz">水</span></span><span class="char-box"><span class="py">kōng</span><span class="hz">空</span></span><span class="char-box"><span class="py">míng</span><span class="hz">明</span></span><span class="punc">，</span><span class="char-box"><span class="py">shuĭ</span><span class="hz">水</span></span><span class="char-box"><span class="py">zhōng</span><span class="hz">中</span></span><span class="char-box"><span class="py">zǎo</span><span class="hz">藻</span></span><span class="char-box"><span class="py">xìng</span><span class="hz">荇</span></span><span class="char-box"><span class="py">jiāo</span><span class="hz">交</span></span><span class="char-box"><span class="py">héng</span><span class="hz">横</span></span><span class="punc">，</span><span class="char-box"><span class="py">gài</span><span class="hz">盖</span></span><span class="char-box"><span class="py">zhú</span><span class="hz">竹</span></span><span class="char-box"><span class="py">bǎi</span><span class="hz">柏</span></span><span class="char-box"><span class="py">yǐng</span><span class="hz">影</span></span><span class="char-box"><span class="py">yě</span><span class="hz">也</span></span><span class="punc">。</span></div>
+      <div class="poem-line"><span class="gap"></span></div>
+      <div class="poem-line"><span class="char-box"><span class="py">hé</span><span class="hz">何</span></span><span class="char-box"><span class="py">yè</span><span class="hz">夜</span></span><span class="char-box"><span class="py">wú</span><span class="hz">无</span></span><span class="char-box"><span class="py">yuè</span><span class="hz">月</span></span><span class="punc">？</span><span class="char-box"><span class="py">hé</span><span class="hz">何</span></span><span class="char-box"><span class="py">chù</span><span class="hz">处</span></span><span class="char-box"><span class="py">wú</span><span class="hz">无</span></span><span class="char-box"><span class="py">zhú</span><span class="hz">竹</span></span><span class="char-box"><span class="py">bǎi</span><span class="hz">柏</span></span><span class="punc">？</span></div>
+      <div class="poem-line"><span class="char-box"><span class="py">dàn</span><span class="hz">但</span></span><span class="char-box"><span class="py">shǎo</span><span class="hz">少</span></span><span class="char-box"><span class="py">xián</span><span class="hz">闲</span></span><span class="char-box"><span class="py">rén</span><span class="hz">人</span></span><span class="char-box"><span class="py">rú</span><span class="hz">如</span></span><span class="char-box"><span class="py">wú</span><span class="hz">吾</span></span><span class="char-box"><span class="py">liǎng</span><span class="hz">两</span></span><span class="char-box"><span class="py">rén</span><span class="hz">人</span></span><span class="char-box"><span class="py">zhě</span><span class="hz">者</span></span><span class="char-box"><span class="py">ěr</span><span class="hz">耳</span></span><span class="punc">。</span></div>
+    </div>
+    <div class="sub">陪女儿读 122 篇古诗文 · 第58篇 · 苏轼（<span style="color:#c0392b">1/6</span>·首次相遇）</div>
+  </div>
+
+  <!-- ③ 进度条 -->
+  <div class="prog-bar">
+    <span class="label">✅ 已完成 4/122 篇</span>
+    <span class="track"><span class="fill" style="width:3.3%"></span></span>
+    <span class="next">下篇预告：第59首</span>
+    <span class="pt">苏轼 <span style="color:#27ae60">●</span><span style="color:#c9a96e">⭐</span><span style="color:#bbb">○○○○</span></span>
+  </div>
+
+  <div class="workflow">
+    <span class="step">📜 司马迁</span><span class="arrow">+</span><span class="step">🎭 庄子</span><span class="arrow">→</span><span class="step">🖋️ 苏轼</span><span class="arrow">→</span><span class="step">🌟 达哥</span><span class="arrow">→</span><span class="step">📝 命题人</span><span class="arrow">→</span><span class="step gate">🔍 史官</span><span class="arrow">→</span><span class="step">🎨 顾恺之</span>
+  </div>
+
+  <!-- ① 锚点导航 -->
+  <div class="nav-bar" id="nav">
+    <a class="nav-btn" href="#sec-sima">📜 司马迁</a>
+    <a class="nav-btn" href="#sec-zhuangzi">🎭 庄子</a>
+    <a class="nav-btn" href="#sec-sushi">🖋️ 苏轼</a>
+    <a class="nav-btn" href="#sec-dage">🌟 达哥</a>
+    <a class="nav-btn" href="#sec-examination">📝 命题人</a>
+    <a class="nav-btn" href="#sec-shiguan">🔍 史官</a>
+    <a class="nav-btn" href="#sec-kexin">🎨 顾恺之</a>
+  </div>
+
+  <!-- 双轴 -->
+  <div class="life-map">
+    <h3>苏轼生平 × 北宋时代</h3>
+    <div class="subtitle">122首中最高频的诗人之一（6篇）· 今天是第1次相遇 · 他在黄州的第四个秋天</div>
+    <div class="dual-col">
+      <div class="col-left">
+        <div class="col-header">📜 苏轼的一生<br><span style="font-size:11px;font-weight:400">司马迁视角 · 看个人</span></div>
+        <div class="dual-tl">
+          <div class="tl-row"><div class="tl-year">1037</div><div class="tl-event">生于眉州眉山（今四川）</div></div>
+          <div class="tl-row"><div class="tl-year">1057</div><div class="tl-event">20岁中进士 · 欧阳修惊呼"此人文章必独步天下"</div></div>
+          <div class="tl-row"><div class="tl-year">1071</div><div class="tl-event">35岁·外放杭州通判 · 反对王安石变法</div></div>
+          <div class="tl-row"><div class="tl-year">1075-1076</div><div class="tl-event">密州 · ○江城子(39岁) · ○水调歌头(40岁) <span class="dual-tag personal">后续会讲</span></div></div>
+          <div class="tl-row"><div class="tl-year">1079</div><div class="tl-event">乌台诗案 · 入狱103天 · 几乎丧命</div></div>
+          <div class="tl-row"><div class="tl-year">1080</div><div class="tl-event">44岁·贬黄州团练副使 · 不得签书公事 · 形同流放</div></div>
+          <div class="tl-row"><div class="tl-year star">1083</div><div class="tl-event peak">⭐ <strong>元丰六年十月十二夜</strong>·月色入户·起行寻张怀民·写此85字 <span class="dual-tag personal">今日</span></div></div>
+          <div class="tl-row"><div class="tl-year">1101</div><div class="tl-event">64岁·卒于常州 · 谥文忠公</div></div>
+        </div>
+      </div>
+      <div class="col-right">
+        <div class="col-header">🎭 北宋的年表<br><span style="font-size:11px;font-weight:400">庄子视角 · 看天命</span></div>
+        <div class="dual-tl">
+          <div class="tl-row"><div class="tl-year">960</div><div class="tl-event">北宋建立 · 赵匡胤陈桥兵变</div></div>
+          <div class="tl-row"><div class="tl-year">1069</div><div class="tl-event">王安石变法 · 新旧党争开始</div></div>
+          <div class="tl-row"><div class="tl-year star">1080-1084</div><div class="tl-event peak">苏轼谪居黄州四年 · 艺术巅峰期 · 赤壁赋·念奴娇·定风波</div></div>
+          <div class="tl-row"><div class="tl-year">1085</div><div class="tl-event">神宗去世 · 哲宗即位 · 高太后摄政 · 旧党回潮</div></div>
+          <div class="tl-row"><div class="tl-year">1094</div><div class="tl-event">再度被贬 · 惠州（广东）→ 儋州（海南）</div></div>
+          <div class="tl-row"><div class="tl-year">1100</div><div class="tl-event">徽宗即位 · 大赦北归</div></div>
+          <div class="tl-row"><div class="tl-year">1127</div><div class="tl-event">靖康之变 · 北宋亡 · 此时苏轼已去世26年</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 地图 -->
+  <div class="life-map">
+    <h3>苏轼贬谪路线 · 北宋疆域</h3>
+    <div class="subtitle">元丰三年(1080)因乌台诗案被贬黄州 · 元丰六年(1083)写《记承天寺夜游》· 后续还将贬至惠州、儋州</div>
+    <div style="text-align:center;margin-top:12px">
+      <img src="苏轼贬谪地图.png" alt="苏轼贬谪路线图" style="width:100%;max-width:680px;border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,0.1)">
+    </div>
+  </div>
+
+  <!-- 司马迁 × 庄子 -->
+  <div class="prose-section sima" id="sec-sima">
+    <h4>📜 司马迁 · 观其个人</h4>
+    <div class="prose-text">
+      <p>苏轼在122篇古诗文中出现了<span class="highlight">6次</span>——杜甫和李白之后，他是第三多的人。今天是第一次遇见他。</p>
+      <p>写这篇85字短文的时候，苏轼47岁，已经在黄州贬了四年。四年前——1080年——他从京城被押送到这个长江边的小城，罪名是"写诗讽刺朝政"。他差点死在狱中。到了黄州，没有俸禄、没有实权、不许离开。他在城东一块荒地上种菜种粮，给自己取名"东坡居士"。<span class="highlight">这些传世名篇——前后赤壁赋、念奴娇·赤壁怀古、定风波——全部是这四年写的。人生最低谷，艺术最高峰。</span></p>
+      <p>这篇文章讲的是什么事？十月十二日深夜，他正要睡觉，看见月光从门缝里照进来，忽然特别高兴——"欣然起行"。大半夜的，他走去承天寺找另一个被贬的朋友张怀民。怀民也没睡。两个人在院子里散步。院子里看月光——月光洒在地上像一池清水，竹子和柏树的影子投在水里，像水草在漂。<span class="highlight">然后他说了一句至今还在被引用的话："何夜无月？何处无竹柏？但少闲人如吾两人者耳。"——哪夜没有月亮？哪里没有竹子？只是很少有人像我们俩这么"闲"而已。</span></p>
+      <p>这个"闲"字是自嘲，也是骄傲。他被迫闲下来了——但他比所有忙着升官发财的人，都更懂得欣赏一个秋天的夜晚。</p>
+    </div>
+  </div>
+
+  <div class="prose-section zhuangzi" id="sec-zhuangzi">
+    <h4>🎭 庄子 · 观其时势</h4>
+    <div class="prose-text">
+      <p>苏轼的一生被一个叫"王安石变法"的事件切成了两半。1069年，宋神宗用王安石推行新政，全国翻天覆地。苏轼反对——不是全盘反对，是觉得太快、太猛、太不顾人死活。结果两边不讨好：新党觉得他是阻碍，旧党觉得他不够坚定。<span class="highlight">他一辈子不站队，一辈子被两边轮流收拾。</span></p>
+      <p>但庄子会说：<span class="highlight">正是这种"被排挤出局"，让他得到了别人得不到的自由。</span>如果他一路当宰相——像仁宗当年期待的那样——他会成为政治家苏轼，不会成为我们认识的苏轼。《赤壁赋》《定风波》《记承天寺夜游》，都是他被踢出京城以后写的。命运把他推到了最远的地方，他在那儿建了一座最高的山。</p>
+      <p>这篇文章里最美的四个字——"月色入户"——月光不是人请来的，是自己"入"的。像老朋友不敲门直接进来。一个被软禁的人，还能这样看月光——这就是庄子说的"逍遥"：不是你能去哪儿，是你心里有没有那道月光。</p>
+    </div>
+  </div>
+
+  <!-- 苏轼 文学品鉴 -->
+  <div class="expert" style="border-left-color:#c0392b" id="sec-sushi">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#c0392b,#e74c3c)">🖋️</div>
+      <div class="expert-meta"><div class="expert-name">苏轼</div><div class="expert-role">文忠公 · 千古文章四大家</div></div>
+    </div>
+    <div class="expert-body">
+      85个字，三层推进。这篇短文是"小品文"的极致——小到只有85字，大到能装下一个人的世界观。
+      <br><br>
+      <strong>第一层：叙事</strong>——"元丰六年十月十二日夜，解衣欲睡，月色入户，欣然起行。"<span class="highlight">时间精确到日。越是平淡的句子，越说明这是真事。</span>"念无与为乐者"——想到没有一起开心的人——走去承天寺找张怀民。怀民"亦未寝"。"亦"字真好——他也没睡。一个人被贬了还睡不着，另一个人也是。他们不需要解释为什么睡不着，彼此都懂。
+      <br><br>
+      <strong>第二层：写景</strong>——"庭下如积水空明，水中藻荇交横，盖竹柏影也。"这是全文最神的一段：<span class="highlight">他把月光写成水，把竹影写成水草，然后才告诉你——不是真的水。"盖竹柏影也"。</span>先制造错觉，再揭破错觉——像变魔术一样。只有被贬到没什么事做的人，才会在深夜的院子里，看得这么仔细。
+      <br><br>
+      <strong>第三层：叹</strong>——"何夜无月？何处无竹柏？但少闲人如吾两人者耳。"三句话、三个反问，逐级推进：① 哪夜没有月亮？② 哪里没有竹子？③ 只是少了我们两个"闲人"罢了。<span class="highlight">这个"闲"字是全篇的钥匙——表面是自嘲"不被重用"，深层是骄傲"我比你们都懂得生活"。</span>政治家苏轼死了，艺术家苏轼用85个字赢了。
+    </div>
+  </div>
+
+  <!-- 达哥 -->
+  <div class="expert" style="border-left-color:#16a085" id="sec-dage" id="sec-dage">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#16a085,#1abc9c)">🌟</div>
+      <div class="expert-meta"><div class="expert-name">达哥共读</div><div class="expert-role">此心安处是吾乡</div></div>
+    </div>
+    <div class="expert-body">
+      <strong>讲给可心听：</strong><br>
+      可心，这个人是爸爸在122首古诗文里最喜欢的一个。他叫苏轼。
+      <br><br>
+      他有多厉害？20岁考进士——全中国最难的考试——他考了全国第二。主考官看了他的文章说"这个人以后文章必全国第一"。皇帝高兴地对皇后说"我为子孙得了两个宰相人选"——一个是他，一个是他弟弟。
+      <br><br>
+      但他没有当宰相。因为他太正直了——别人都不敢说真话的时候，他说了。结果被人陷害，关进大牢，差点被杀。后来被赶到长江边上的小城黄州，不许做官、不许离开——<span class="highlight">形同软禁。</span>
+      <br><br>
+      这篇文章写的就是那个时期。一天深夜，他正要睡觉，月光从门缝照进来。他高兴了，跑去另一个被贬的朋友那里。人家也没睡。两个"倒霉蛋"在寺院院子里散步。月光洒在地上，像一地清水。竹子和柏树的影子投在上面，像水草在漂。<span class="highlight">他说了一句特别厉害的话："哪夜没有月亮？哪里没有竹子？只是没有像我们俩这么'闲'的人罢了。"</span>
+      <br><br>
+      别人忙着升官发财，他忙着看月光。你觉得谁过得更快乐？
+      <br><br>
+      <strong>预告：</strong>苏轼在122首里还会出现<strong>5次</strong>——他的《水调歌头》《江城子》《定风波》都是千古名篇。今天是第一次认识他，以后每次再见他，你会发现他的人生一直在变——越贬越远，越远越豁达。
+      <br><br>
+      <strong>跟可心聊：</strong><br>
+      1. 你半夜被月光照醒过吗？如果照醒了，你会干什么？<br>
+      2. 苏轼是被迫"闲下来"的——但他把"闲"变成了一种骄傲。你觉得他是真的开心，还是在假装开心？<br>
+      3. 如果从今天起，你不能再上学、不能出门——你会做什么？
+    </div>
+  </div>
+
+  <!-- 命题人 -->
+  <div class="expert" style="border-left-color:#2471a3" id="sec-examination">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#2471a3,#1a5276)">📝</div>
+      <div class="expert-meta"><div class="expert-name">命题人</div><div class="expert-role">北京中考 · 考点透视</div></div>
+    </div>
+    <div class="expert-body">
+      <div class="exam-grid">
+        <div class="exam-card ec-blue"><h5>📋 必考实词</h5>
+          <p><strong>念</strong>：想到。"念无与为乐者"——想到没有一起取乐的人。</p>
+          <p><strong>遂</strong>(suì)：于是、就。"遂至承天寺"——就到承天寺。考点：承接关系。</p>
+          <p><strong>寝</strong>(qǐn)：睡觉。"怀民亦未寝"——怀民也没有睡。</p>
+          <p><strong>但</strong>：古今异义！古义"只是"，今义"但是"。<strong>常考题。</strong></p>
+          <p><strong>耳</strong>：罢了。句末语气词。</p>
+        </div>
+        <div class="exam-card ec-green"><h5>📝 核心名句默写</h5>
+          <p>① "庭下如积水空明，水中藻荇交横，盖竹柏影也"——全文最核心写景句。注意"藻"草字头、"荇"草字头。</p>
+          <p>② "何夜无月？何处无竹柏？但少闲人如吾两人者耳"——主旨句。高频理解题：分析"闲人"含义。</p>
+          <p>③ "念无与为乐者，遂至承天寺寻张怀民"——常考此句表现了苏轼怎样的心情。</p>
+        </div>
+        <div class="exam-card ec-orange"><h5>🎯 阅读理解必考点</h5>
+          <p><strong>"闲人"的含义</strong>（中考高频）：表面自嘲被贬闲置，深层①赏月闲适②蔑视追名逐利③豁达胸襟。三个层面缺一不可。</p>
+          <p><strong>月色描写手法</strong>："积水空明"喻月光，"藻荇交横"喻竹影——比喻赏析考点。</p>
+          <p><strong>叙事+写景+抒情/议论</strong>的三段式结构，中考可能要求划分层次。</p>
+        </div>
+        <div class="exam-card ec-red"><h5>⚠️ 易错字</h5>
+          <p>寝（宝盖头，不是穴字头）、藻（草字头+澡的右边）、荇（草字头+行）、遂（上半不是"逐"）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 史官 -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">▼ 史官审核 ▼</div><div class="divider-line"></div></div>
+  <div class="expert reviewer" id="sec-shiguan">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">🔍</div>
+      <div class="expert-meta"><div class="expert-name">史官</div><div class="expert-role">秉笔直书 · 信史可传</div></div>
+    </div>
+    <div class="expert-body">
+      <strong>事实核查</strong>：元丰六年十月十二日=1083年11月（农历十月十二）；乌台诗案1079年；贬黄州1080-1084年；张怀民1083年被贬黄州；"闲人"的双关含义（自嘲+骄傲）有历代注本可查。122首中苏轼共6篇（含本文）。✅<br>
+      <strong>拼音审核</strong>：重点字——"寝(qǐn)"、"藻(zǎo)"、"荇(xìng)"、"遂(suì)"、"但(dàn,古今异义)"、"耳(ěr,语气词)"。✅ 全部正确。<br>
+      <strong>价值观审核</strong>：叙事角度（被贬中找到美）积极向上，"闲人"的解读准确且富有教育意义。✅<br>
+      <span style="color:#27ae60;font-weight:700">史官结论：全部通过。准予放行。</span>
+    </div>
+  </div>
+
+  <!-- 顾恺之 -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">▼ 审核通过 · 可心入画 ▼</div><div class="divider-line"></div></div>
+  <div class="expert" style="border-left-color:#d35400">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#d35400,#e67e22)">🎨</div>
+      <div class="expert-meta"><div class="expert-name">顾恺之</div><div class="expert-role">以形写神 · 迁想妙得</div></div>
+    </div>
+    <div class="expert-body">
+      85字里最美的画面是月光——它不是人请来的，是自己从门缝里照进来的。这可能是中国文学史上最安静的一幅夜景：两个人、一片月光、一地竹影。不是壮丽的山河，就是一个被贬的深夜庭院。<span class="highlight">最深的平静，在最不平顺的时候。</span>
+    </div>
+  </div>
+
+  <!-- 可心互动 -->
+  <div class="kexin-dialogue">
+    <h3>🎨 顾恺之 × 可心</h3>
+    <div class="intro">读完这篇85字的短文，<strong>现在你是画师</strong>。深夜的月光在你心里是什么样的？<br><span style="font-size:11px;color:#bbb">点一下你选的答案就好</span></div>
+    <div class="q-item"><div class="q-text"><div class="q-label">第 1 问</div><div class="q-ask">「这幅画是什么颜色的？」</div><p>月光、竹影、庭院——苏轼看到的深夜，你觉得是什么颜色的？</p><div class="q-options"><span class="q-opt" data-q="1" data-v="银白色的月光"><span class="q-pick">✓</span> 银白月光</span><span class="q-opt" data-q="1" data-v="蓝黑色的深夜"><span class="q-pick">✓</span> 蓝黑深夜</span><span class="q-opt" data-q="1" data-v="月光白+竹影黑"><span class="q-pick">✓</span> 月光白+竹影黑</span></div></div></div>
+    <div class="q-item"><div class="q-text"><div class="q-label">第 2 问</div><div class="q-ask">「院子里应该有几个人？」</div><p>苏轼和张怀民在院子里散步——你画他们在画里吗？还是只画月光和竹影，看不见人？</p><div class="q-options"><span class="q-opt" data-q="2" data-v="两个人影在月光下（能看到他们）"><span class="q-pick">✓</span> 两个人影</span><span class="q-opt" data-q="2" data-v="只画庭院月光竹影（人在画外）"><span class="q-pick">✓</span> 只有庭院</span></div></div></div>
+    <div class="q-item"><div class="q-text"><div class="q-label">第 3 问</div><div class="q-ask">「月光怎么画？」</div><p>苏轼说月光像"积水空明"——你觉得月光该像什么？</p><div class="q-options"><span class="q-opt" data-q="3" data-v="像一池清水铺在地上"><span class="q-pick">✓</span> 像清水</span><span class="q-opt" data-q="3" data-v="像淡淡的银色薄纱"><span class="q-pick">✓</span> 像薄纱</span><span class="q-opt" data-q="3" data-v="从门缝照进来的一道亮光"><span class="q-pick">✓</span> 一道亮光</span></div></div></div>
+    <div class="q-item"><div class="q-text"><div class="q-label">第 4 问</div><div class="q-ask">「这幅画有声音吗？」</div><p>85个字里没有写任何声音。你觉得是故意安静，还是应该有声音？</p><div class="q-options"><span class="q-opt" data-q="4" data-v="安静什么都不加"><span class="q-pick">✓</span> 安静</span><span class="q-opt" data-q="4" data-v="蝉鸣虫叫（庭院夜晚的声音）"><span class="q-pick">✓</span> 蝉鸣虫叫</span></div></div></div>
+    <div class="q-item"><div class="q-text"><div class="q-label">第 5 问</div><div class="q-ask">「他被冤枉、被贬了、被软禁——但是觉得月光很美。你觉得画里应该多一点什么？」</div><p>写完这篇文章18年后他才去世——这18年里又被贬了两次，一次比一次远（惠州、海南）。</p><div class="q-options"><span class="q-opt" data-q="5" data-v="佩服（在最低谷还能欣赏月光·不是假装）"><span class="q-pick">✓</span> 佩服</span><span class="q-opt" data-q="5" data-v="安静（他不再需要别人认可了）"><span class="q-pick">✓</span> 安静</span><span class="q-opt" data-q="5" data-v="温暖（那个深夜有人陪他散步）"><span class="q-pick">✓</span> 温暖</span></div></div></div>
+    <div class="signature-area"><div class="seal">沐<br>言<br>注</div><div class="caption">沐言注 · 这幅画里有可心读完85个字之后心里的样子</div></div>
+  </div>
+
+  <!-- 插画提示词 -->
+  <div class="image-section">
+    <h3>🖼️ 插画提示词 <span style="font-size:12px;color:#999">— 自动合成 · 复制发给 ChatGPT</span></h3>
+    <div class="prompt-box" id="prompt">选完了吗？点击下面的按钮，自动合成提示词。</div>
+    <button class="copy-btn" onclick="build()">合成提示词</button><span style="font-size:12px;color:#999;margin-left:8px" id="hint">← 可心每问点一个答案，然后点这里</span>
+  </div>
+  <script>
+    // ② localStorage 持久化
+    const PREFIX = 'p58_';
+    function saveChoice(q){localStorage.setItem(PREFIX+q, document.querySelector('.q-opt[data-q="'+q+'"].picked')?.dataset.v||'');}
+    function restoreChoices(){for(let i=1;i<=5;i++){const v=localStorage.getItem(PREFIX+i);if(v){document.querySelectorAll('.q-opt[data-q="'+i+'"]').forEach(o=>{if(o.dataset.v===v)o.classList.add('picked');});}}}
+    document.querySelectorAll('.q-opt').forEach(o=>{o.addEventListener('click',function(){const q=this.dataset.q;document.querySelectorAll('.q-opt[data-q="'+q+'"]').forEach(x=>x.classList.remove('picked'));this.classList.add('picked');saveChoice(q);});});
+    restoreChoices();
+    function build(){const s={};for(let i=1;i<=5;i++){const p=document.querySelector('.q-opt[data-q="'+i+'"].picked');if(!p){alert('第'+i+'问还没选');return}s[i]=p.dataset.v}
+    document.getElementById('prompt').innerText='竖版插画，3:4，中国水墨画风格。深夜的寺院庭院。\n\n色调：'+s[1]+'。画面构成：'+s[2]+'。月光质感：'+s[3]+'。声音：'+s[4]+'。\n\n核心：月光洒满庭院地面，竹子和柏树的影子倒映其中如同水草。两个人在散步或只是站着——不刻意摆姿势。\n\n情感基调：'+s[5]+'。一个被贬被软禁的人，在深夜看月光——不是演出来的豁达，是真的觉得这月光美。\n\n底部小字横排"北宋 · 苏轼《记承天寺夜游》"，右下角朱红竖排"沐言注"。';document.getElementById('hint').innerText='✓ 已合成！';}
+  </script>
+
+  <!-- 五格 -->
+  <div class="five-grid">
+    <h4>🧩 五格模板</h4>
+    <div class="grid-item"><div class="grid-num">①</div><div class="grid-text"><strong>扳机</strong>：1083年十月十二日夜，一个人正要睡觉，月光从门缝照进来。他爬起来，走去另一个被贬的朋友那里。两人在寺院院子里散步。然后写了85个字。</div></div>
+    <div class="grid-item"><div class="grid-num">②</div><div class="grid-text"><strong>背景</strong>：苏轼（1037-1101），20岁中进士，被仁宗视为宰相之才。因乌台诗案差点丧命，贬黄州四年——人生最低谷，却产出了《赤壁赋》《定风波》和这篇85字短文。122首中出现6次，今天第1次。</div></div>
+    <div class="grid-item"><div class="grid-num">③</div><div class="grid-text"><strong>命运的反差</strong>：皇帝等着他当宰相，他却在深夜的寺院里看月光。以后还会遇到他5次——从密州到黄州到惠州到海南，越贬越远，越远越豁达。"此心安处是吾乡。"</div></div>
+    <div class="grid-item"><div class="grid-num">④</div><div class="grid-text"><strong>给可心的问题</strong>：你被月光照醒过吗？他是被迫"闲下来"的——但他说"闲"的时候是难过还是骄傲？他还会出现5次，每次人生都可能不一样，你下次想听到他什么样的故事？</div></div>
+    <div class="grid-item"><div class="grid-num">⑤</div><div class="grid-text"><strong>钩子</strong>：<em>"不是每一个被贬的人都能看见月光。能看见的人，其实没有被困住。"</em></div></div>
+  </div>
+
+  <!-- ⑥ 跨篇时间轴：苏轼 1/6 -->
+  <div class="cross-tl">
+    <h4 style="font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;color:#4a3728;margin-bottom:6px">📎 苏轼 · 本篇在122首中的位置 1/6</h4>
+    <div class="tl-bar">
+      <span class="dn dnw">⭐</span><span class="ta">——</span>
+      <span class="dn df">○</span><span class="ta">——</span>
+      <span class="dn df">○</span><span class="ta">——</span>
+      <span class="dn df">○</span><span class="ta">——</span>
+      <span class="dn df">○</span><span class="ta">——</span>
+      <span class="dn df">○</span>
+    </div>
+    <div style="font-size:11px;color:#999;margin-top:6px">
+      <span style="color:#c9a96e;font-weight:700">⭐ 记承天寺夜游 · 元丰六年(1083) · 黄州</span> ｜
+      <span style="color:#bbb">○ 水调歌头(1076·密州) ／ ○ 江城子(1075·密州) ／ ○ 定风波(1082·黄州) ／ ○ 卜算子(1082·黄州) ／ ○ (另一篇)</span>
+    </div>
+    <div style="font-size:10px;color:#bbb;margin-top:6px">下次再见 · 再讲下一首苏轼时，会回到这个时间轴标记新位置</div>
+  </div>
+
+</div>
+</body>
+</html>

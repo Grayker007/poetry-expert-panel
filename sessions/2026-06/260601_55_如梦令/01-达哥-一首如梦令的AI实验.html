@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一首《如梦令》的AI实验</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: #f5f0e8;
+    color: #333;
+    line-height: 1.8;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 0 36px;
+    border-bottom: 2px solid #d4c5a9;
+    margin-bottom: 40px;
+  }
+  .header .label {
+    font-size: 13px;
+    color: #999;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #2c2c2c;
+    margin-bottom: 8px;
+  }
+  .header .sub {
+    font-size: 15px;
+    color: #888;
+  }
+  .header .poem {
+    margin-top: 24px;
+    padding: 20px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    color: #555;
+    line-height: 2;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c2c2c;
+  }
+  .section-header .time {
+    font-size: 13px;
+    color: #aaa;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .card p {
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+  .card p:last-child { margin-bottom: 0; }
+
+  .action {
+    background: #f8f5ff;
+    border-left: 3px solid #764ba2;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  .action strong { color: #764ba2; }
+
+  .discuss {
+    background: #fff9f0;
+    border-left: 3px solid #e8a838;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  .discuss strong { color: #c88a20; }
+
+  .vs {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .vs-item {
+    flex: 1;
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .vs-item .tool { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+  .vs-item .desc { font-size: 13px; color: #888; }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #667eea15, #764ba215);
+    border: 1px solid #d4c5e8;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .highlight-box .big {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #4a3d8f;
+    margin-bottom: 8px;
+  }
+  .highlight-box .small {
+    font-size: 14px;
+    color: #777;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #d4c5a9;
+    color: #bbb;
+    font-size: 13px;
+  }
+
+  .hook {
+    background: linear-gradient(135deg, #ff6b6b15, #ee5a2415);
+    border: 1px dashed #e8a088;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .hook .emoji { font-size: 28px; margin-bottom: 8px; }
+  .hook .text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 17px;
+    color: #c0543a;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="label">郭家AI实验室 · 第1期</div>
+    <h1>一首《如梦令》的AI实验</h1>
+    <div class="sub">2026年6月2日 · 达哥主讲</div>
+    <div class="poem">
+      《如梦令》 宋·李清照<br>
+      常记溪亭日暮，沉醉不知归路。<br>
+      兴尽晚回舟，误入藕花深处。<br>
+      争渡，争渡，惊起一滩鸥鹭。
+    </div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-num">1</div>
+      <h2>同一首诗，两个AI拍的"电影"</h2>
+      <span class="time">3分钟</span>
+    </div>
+    <div class="card">
+      <p>先不说话，直接放两段视频：</p>
+      <div class="vs">
+        <div class="vs-item">
+          <div class="tool">Gemini</div>
+          <div class="desc">Google 的AI</div>
+        </div>
+        <div class="vs-item">
+          <div class="tool">豆包</div>
+          <div class="desc">字节跳动的AI</div>
+        </div>
+      </div>
+      <div class="discuss">
+        <strong>问大家：</strong>你们觉得哪个更好看？哪个更像这首诗？
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-num">2</div>
+      <h2>光有画面够吗？</h2>
+      <span class="time">3分钟</span>
+    </div>
+    <div class="card">
+      <p>视频好看，但看完你更懂这首诗了吗？</p>
+      <p>如果不知道李清照是谁、她为什么写这首词，视频就只是"好看的动画"，没有感情。</p>
+      <p>所以我换了一种方式——先让 AI 做一张<strong>信息图</strong>，讲清楚背景故事：</p>
+      <div class="action">
+        <strong>展示：</strong>ChatGPT 和 Gemini 各生成的信息图
+      </div>
+      <p>一个是十六七岁的少女，家庭优渥，无忧无虑，在溪亭边喝酒玩到天黑迷了路——知道了这些，再看视频，感觉就完全不一样了。</p>
+      <div class="discuss">
+        <strong>问可心：</strong>你们班的同学谁跟十六七岁的李清照最像？
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-num">3</div>
+      <h2>两张图都不错，你选哪张？</h2>
+      <span class="time">2分钟</span>
+    </div>
+    <div class="card">
+      <p>ChatGPT 和 Gemini 生成的信息图放在一起看——</p>
+      <div class="vs">
+        <div class="vs-item">
+          <div class="tool">ChatGPT</div>
+          <div class="desc">编号清晰，有小朋友角色<br>结构化，像教材</div>
+        </div>
+        <div class="vs-item">
+          <div class="tool">Gemini</div>
+          <div class="desc">水墨风更浓<br>叙事感强，像故事</div>
+        </div>
+      </div>
+      <p>两个都很好，没有对错。你选哪个，就是你的<strong>品味</strong>在做判断。</p>
+      <div class="discuss">
+        <strong>问大家：</strong>你喜欢哪张？为什么？
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-num">4</div>
+      <h2>换你来！选一首诗让AI画</h2>
+      <span class="time">5-8分钟</span>
+    </div>
+    <div class="card">
+      <p>现在轮到你们自己试了。</p>
+      <div class="action">
+        <strong>可心和妈妈：</strong>从课本里选一首你喜欢的诗，分别在 Gemini 和 ChatGPT 里让它"用水墨画风格画出来"。看看谁画得更好。
+      </div>
+      <p>不用写复杂的提示词，就一句话：</p>
+      <p style="text-align:center; font-family: 'Noto Serif SC', serif; font-size: 17px; color: #667eea; padding: 12px 0;">
+        "用中国水墨画风格，把《XX》这首诗画成一张图"
+      </p>
+      <div class="discuss">
+        <strong>做完后聊：</strong>你觉得AI理解这首诗了吗？哪里画对了？哪里不对？
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-num">5</div>
+      <h2>今天我最想说的两句话</h2>
+      <span class="time">2分钟</span>
+    </div>
+    <div class="card">
+      <div class="highlight-box">
+        <div class="big">第一句：想象的AI ≠ 动手的AI</div>
+        <div class="small">我们都"知道"AI能生成视频、做信息图。但怎么组合、先做什么后做什么，只有动手试了才知道。<br>这就是我们做家庭AI分享的意义——不只是聊，要动手。</div>
+      </div>
+      <div class="highlight-box">
+        <div class="big">第二句：AI能生成万物的时代，品味比工具重要</div>
+        <div class="small">工具人人都能用。但选哪个、怎么选、什么是好的——<br>这些判断来自你读过的书、看过的画、走过的路。<br>AI 替不了这个。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hook -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-num" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">?</div>
+      <h2>预告</h2>
+    </div>
+    <div class="hook">
+      <div class="emoji">🦞</div>
+      <div class="text">下次，我让你们认识一下我养的那只"龙虾"。<br>它不只是聊天，它能自己干活。</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    郭家AI实验室 · 每月三次 · 三人轮值 · 一起探索未来
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>古诗文专家团 · 功能介绍</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans SC',sans-serif;background:#f7f3eb;color:#333;line-height:1.8}
+  .page{max-width:800px;margin:0 auto;padding:32px 20px 80px}
+
+  .header{text-align:center;padding:40px 0 32px;border-bottom:2px solid #d4c5a9;margin-bottom:36px}
+  .header .badge{font-size:12px;color:#c9a96e;letter-spacing:6px;text-transform:uppercase;margin-bottom:10px}
+  .header h1{font-family:'Noto Serif SC',serif;font-size:34px;font-weight:900;color:#4a3728;letter-spacing:2px}
+  .header .tagline{font-size:15px;color:#a08560;margin-top:8px;line-height:1.6}
+
+  .hero{background:#fff;border-radius:20px;padding:32px;margin:28px 0;text-align:center;box-shadow:0 3px 16px rgba(0,0,0,0.05)}
+  .hero .motto{font-family:'Noto Serif SC',serif;font-size:22px;color:#8b6914;font-weight:700;margin-bottom:8px}
+  .hero .motto-sub{font-size:14px;color:#999}
+
+  .section{margin:40px 0}
+  .section-title{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;color:#4a3728;padding-bottom:8px;border-bottom:2px solid #e8dcc8;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+
+  /* Flow */
+  .flow{display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;padding:20px 0}
+  .flow-step{display:flex;flex-direction:column;align-items:center;width:100px}
+  .flow-icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;margin-bottom:8px}
+  .flow-name{font-size:13px;font-weight:700;color:#4a3728;text-align:center}
+  .flow-role{font-size:11px;color:#999;text-align:center;margin-top:2px}
+  .flow-arrow{font-size:20px;color:#c9a96e;margin:0 4px;flex-shrink:0}
+  .flow-gate{border:2px dashed #e74c3c;border-radius:12px;padding:4px 10px}
+
+  .fi1{background:linear-gradient(135deg,#2c3e50,#34495e)}
+  .fi2{background:linear-gradient(135deg,#8e44ad,#9b59b6)}
+  .fi3{background:linear-gradient(135deg,#c0392b,#e74c3c)}
+  .fi4{background:linear-gradient(135deg,#16a085,#1abc9c)}
+  .fi5{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+  .fi6{background:linear-gradient(135deg,#d35400,#e67e22)}
+
+  /* Tables */
+  .table-wrap{border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+  table{width:100%;border-collapse:collapse;background:#fff}
+  th{background:#fdf8ee;padding:12px 16px;font-size:13px;font-weight:700;color:#8b6914;text-align:left}
+  td{padding:12px 16px;font-size:14px;border-top:1px solid #f5f0e8;color:#555;vertical-align:top}
+  tr:hover td{background:#fdfcf7}
+
+  .card{background:#fff;border-radius:14px;padding:22px;margin:16px 0;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+  .card h3{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;color:#4a3728;margin-bottom:8px}
+  .card p{font-size:14px;color:#555;margin-bottom:8px}
+  .card .note{font-size:13px;color:#999;background:#fdf8ee;padding:10px 14px;border-radius:8px;margin-top:10px;line-height:1.6}
+
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .principle{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.04);border-top:3px solid #c9a96e}
+  .principle h3{font-size:15px;font-weight:700;color:#4a3728;margin-bottom:8px;font-family:'Noto Serif SC',serif}
+  .principle p{font-size:13px;color:#888;line-height:1.6}
+
+  .footer{text-align:center;margin-top:48px;padding-top:20px;border-top:2px solid #d4c5a9;color:#bbb;font-size:13px}
+
+  .highlight{background:#fdf6ee;padding:2px 8px;border-radius:4px;color:#8b6914;font-weight:500}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="badge">Claude Code Skill</div>
+    <h1>古诗文专家团</h1>
+    <div class="tagline">用多位AI专家从不同维度分析一首诗，<br>帮你跟孩子读古诗文时，有故事可讲、有问题可聊。</div>
+  </div>
+
+  <div class="hero">
+    <div class="motto">陪女儿读122篇古诗文</div>
+    <div class="motto-sub">一篇一篇，读懂写它的人当时怎么活</div>
+  </div>
+
+  <!-- 核心价值 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">💡</span> 解决什么问题</div>
+    <div class="card">
+      <p>给可心讲一首诗，光说"写得很好"不够。她记不住。但如果你说：</p>
+      <p style="margin-top:10px"><strong>"可心，上次我们认识杜甫24岁，他站在泰山脚下觉得自己能征服世界。今天他47岁了，安史之乱中，写了《春望》。从'会当凌绝顶'到'国破山河在'——你猜这中间发生了什么？"</strong></p>
+      <p style="margin-top:10px">这样讲，她记住的不是一首诗，是一个人的命运。而这个人的7首诗在122首里都会遇到——每次遇见，都是时间轴上的一个新节点。</p>
+    </div>
+  </div>
+
+  <!-- 工作流 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">⚙️</span> 工作流</div>
+    <div class="flow">
+      <div class="flow-step"><div class="flow-icon fi1">📜</div><div class="flow-name">历史学家</div><div class="flow-role">年代背景</div></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="flow-icon fi2">🎭</div><div class="flow-name">命运观察者</div><div class="flow-role">人物命运</div></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="flow-icon fi3">🖋️</div><div class="flow-name">文学品鉴</div><div class="flow-role">词章之美</div></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="flow-icon fi4">🌟</div><div class="flow-name">亲子共读</div><div class="flow-role">讲给孩子</div></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="flow-icon fi5">🔍</div><div class="flow-name">审查员</div><div class="flow-role">事实+拼音+价值观</div></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><div class="flow-icon fi6">🎨</div><div class="flow-name">插画师</div><div class="flow-role">主题画</div></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>步骤</th><th>专家</th><th>回答什么问题</th><th>输出</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>📜 历史学家</td><td>时代背景 + 诗人全貌。这个诗人在122首里还有哪些诗？画出时间轴标出所有诗在哪个年龄写的。今天这首是第几个节点——前面写过什么、后面还会写什么。</td><td>200-350字，含诗人时间轴</td></tr>
+          <tr><td>2</td><td>🎭 命运观察者</td><td>个人生平创作时间轴。用⭐标注今天的诗、●已讲过、○还没讲到。这个节点的命运状态是上升期/巅峰期/坠落期？时间轴把已讲过的串起来。</td><td>200-350字，含创作时间轴</td></tr>
+          <tr><td>3</td><td>🖋️ 文学品鉴</td><td>这首词好在哪？哪几句最动人？</td><td>手法 + 名句赏析，不用学术腔</td></tr>
+          <tr><td>4</td><td>🌟 亲子共读向导</td><td>怎么翻译给10岁孩子听？怎么打开对话？</td><td>儿童化翻译 + 2个开放式问题</td></tr>
+          <tr><td>🔍</td><td>🔍 审查员</td><td>内容准确吗？拼音对吗？对孩子合适吗？</td><td>事实核查 + 拼音审核 + 价值观审核</td></tr>
+          <tr><td>5</td><td>🎨 插画师</td><td>怎么把这一切变成一幅画？</td><td>竖版插画提示词（发ChatGPT生成）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 审查员 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">🛡️</span> 审查员的三道关</div>
+    <div class="principles">
+      <div class="principle">
+        <h3>📋 事实核查</h3>
+        <p>逐条验证历史事件、人物关系的准确性。如"赵明诚死在任上"→修正为"病逝于赴任途中"。主观评价声明"属文学批评范畴"。</p>
+      </div>
+      <div class="principle">
+        <h3>🔤 拼音审核</h3>
+        <p>逐个比对字音。多音字根据词意确认（"兴xìng"表兴致、非xīng）。变调规则核对。全部33字或更多逐一过关。</p>
+      </div>
+      <div class="principle">
+        <h3>🛡️ 价值观把关</h3>
+        <p>检查是否有恐吓式表达（"孤苦无依"→"日子比年轻时难了很多"）、是否引导表达而非考察答案、是否适合10岁年龄。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 五格模板 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">🧩</span> 最终交付：五格模板</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>格</th><th>内容</th><th>谁填</th><th>示例（如梦令）</th></tr></thead>
+        <tbody>
+          <tr><td>① 扳机</td><td>一句素材，抓人注意</td><td>文学品鉴</td><td>写于李清照少女时，日子好到只用记得"哪天划船玩疯了"</td></tr>
+          <tr><td>② 背景</td><td>30秒，落到"人/处境"</td><td>历史学家</td><td>北宋第一才女，家世显赫。大宋的太阳还挂在天上</td></tr>
+          <tr><td>③ 命运反差</td><td>最关键的转折</td><td>命运观察者</td><td>靖康之变→国破家亡→这首词是她一生最幸福时光的快照</td></tr>
+          <tr><td>④ 给孩子的问题</td><td>点燃对话</td><td>亲子共读向导</td><td>你记得自己最开心的一次玩到忘了时间吗？</td></tr>
+          <tr><td>⑤ 钩子</td><td>一句大白话金句</td><td>命运观察者</td><td>人最好的日子，常常是过完了才知道的</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 时间轴示例 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">📊</span> 时间轴示例：杜甫的一生</div>
+    <div class="card">
+      <p style="margin-bottom:16px">同一个诗人重复出现时，历史学家和命运观察者会自动串联时间轴。已讲过的诗用●标注，今天的用⭐，还没讲到的用○。</p>
+      <div style="background:#fdf8ee;border-radius:12px;padding:20px;font-family:'Noto Serif SC',serif;font-size:13px;line-height:2;overflow-x:auto;white-space:nowrap">
+        712(生) → 735(23岁·洛阳漫游) → <span style="background:#c9a96e;color:#fff;padding:2px 8px;border-radius:4px">⭐736 望岳</span> → 744(32岁·遇李白) → 747(35岁·长安困顿) → <span style="color:#27ae60">●743 《月夜忆舍弟》</span> → 755(43岁·安史之乱爆发) → <span style="background:#c9a96e;color:#fff;padding:2px 8px;border-radius:4px">⭐757 春望</span> → <span style="color:#27ae60">●759 石壕吏</span> → <span style="color:#27ae60">●761 茅屋为秋风所破歌</span> → <span style="color:#bbb">○765 闻官军收河南河北</span> → <span style="color:#bbb">○770 江南逢李龟年</span> → 770(卒)
+      </div>
+      <p style="margin-top:14px;font-size:13px;color:#999">这是第2次讲杜甫。上次讲24岁的《望岳》，今天讲47岁的《春望》。同一个人的前后两首诗串在一起，孩子看到的是"一个人从少年到中年的25年"。</p>
+    </div>
+  </div>
+
+  <!-- 核心原则 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">📐</span> 核心原则</div>
+    <div class="principles">
+      <div class="principle">
+        <h3>主角是人，不是诗</h3>
+        <p>诗是扳机，不是分析终点。整篇真正讲的是人的命运、孩子的反应。不是"这首诗好在哪"，而是"写它的人怎么活"。</p>
+      </div>
+      <div class="principle">
+        <h3>删素材测试</h3>
+        <p>把对诗的讲解删掉，剩下的"人的故事 + 互动"还成不成立？不成立→退回重做。成立→叙事立住了。</p>
+      </div>
+      <div class="principle">
+        <h3>用约束换复利</h3>
+        <p>122篇统一用同一套专家团+五格模板。第100篇回头给第1篇增值。最终拼出"只有你讲得出来的古诗文课"。</p>
+      </div>
+      <div class="principle">
+        <h3>审查员不可跳过</h3>
+        <p>所有内容必经审查员审核。事实不准的退回修正，对孩子不合适的用语必须柔化。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 使用方式 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">🚀</span> 怎么用</div>
+    <div class="card">
+      <h3>方式一：直接用模板页面</h3>
+      <p>打开 <code>古诗文专家团.html</code>（已有《如梦令》完整示例），包含带拼音的诗文、主题图、各专家解读、审查结果、五格模板。给孩子看，一个页面就够了。</p>
+    </div>
+    <div class="card">
+      <h3>方式二：调用 Skill 生成新诗</h3>
+      <p>在 Claude Code 中说：<strong>"用古诗文专家团分析李白的《望岳》"</strong>，Skill 会自动启动，按6步工作流依次输出所有专家的分析。</p>
+    </div>
+    <div class="card">
+      <h3>方式三：每天睡前5分钟</h3>
+      <p>选一首明天要背的诗 → 运行专家团 → 拿到五格模板 → 睡前跟可心讲故事一样讲一遍 → 第二天用插画辅助背诵。</p>
+    </div>
+  </div>
+
+  <!-- 项目意义 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">🎯</span> 项目意义</div>
+    <div class="card">
+      <p><strong>对可心</strong>：把122篇古诗文从"要背的东西"变成"要认识的人"。每一个诗人都是一个真实活过的人，有自己的快乐、挣扎、选择。背诗不再是为了考试，是为了理解"人可以怎么活"。</p>
+      <p style="margin-top:10px"><strong>对达哥</strong>：这是你的"个人叙事"——不是讲古诗文，是用古诗文讲你对人、对命运的理解。AI做知识搬运，你做命运解读。122篇讲完就是一本书。</p>
+      <p style="margin-top:10px"><strong>对家庭</strong>：每天睡前5分钟的亲子共读，不再是"爸爸来教你"，而是"我们一起认识了一个一千年前的人"。</p>
+    </div>
+  </div>
+
+  <!-- 关联知识 -->
+  <div class="section">
+    <div class="section-title"><span style="font-size:24px">🔗</span> 关联知识</div>
+    <div class="card">
+      <p>这个专家团工作流建立在以下知识体系之上（均在 Obsidian 有完整沉淀）：</p>
+      <p style="margin-top:10px">
+        <span class="highlight">个人叙事构建法</span> — 一辈子击穿一个叙事，用约束换复利<br>
+        <span class="highlight">内容创造的内核</span> — 生成效应 / 双重编码 / 节奏设计 / 陌生化<br>
+        <span class="highlight">品味即护城河</span> — AI吞工序，选择能力成为真护城河<br>
+        <span class="highlight">古诗文知识地图</span> — 122篇按朝代、诗人、主题全量分类
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Skill: poetry-expert-panel &nbsp;|&nbsp; 郭家AI实验室 &nbsp;|&nbsp; 2026
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三峡 · 郦道元</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans SC',sans-serif;background:#f7f3eb;color:#333;line-height:1.8;min-height:100vh}
+  .page{max-width:860px;margin:0 auto;padding:24px 20px 80px}
+  .header{text-align:center;padding:32px 0 24px}
+  .header .title{font-family:'Noto Serif SC',serif;font-size:32px;font-weight:900;color:#4a3728;letter-spacing:6px}
+  .header .author{font-size:14px;color:#a08560;margin-top:6px}
+  .header .sub{font-size:13px;color:#a08560;margin-top:4px}
+
+  /* Pinyin poem */
+  .poem-box{background:rgba(255,255,255,0.5);border-radius:14px;padding:24px 16px;max-width:660px;margin:16px auto 0}
+  .poem-line{display:flex;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+  .char-box{display:inline-flex;flex-direction:column;align-items:center;width:36px;text-align:center}
+  .char-box .py{font-size:9px;color:#a08560;font-family:'Noto Sans SC',sans-serif;font-weight:400;line-height:1;margin-bottom:2px}
+  .char-box .hz{font-family:'Noto Serif SC',serif;font-size:18px;color:#8b6914;line-height:1.3}
+  .poem-line .punc{display:flex;align-items:flex-end;width:14px;text-align:center;font-size:16px;color:#8b6914;padding-bottom:3px}
+  .poem-line .gap{width:24px}
+
+  .workflow{display:flex;align-items:center;justify-content:center;gap:8px;margin:24px 0;flex-wrap:wrap;font-size:12px;color:#999}
+  .workflow .step{padding:4px 12px;border-radius:20px;background:#f5f0e8}
+  .workflow .arrow{color:#c9a96e;font-weight:700}
+  .workflow .step.gate{border:2px solid #e74c3c;background:#fff;color:#e74c3c;font-weight:700}
+
+  .life-map{background:#fff;border-radius:16px;padding:28px 24px 20px;margin:28px 0;box-shadow:0 3px 14px rgba(0,0,0,0.05)}
+  .life-map h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;text-align:center;margin-bottom:6px}
+  .life-map .subtitle{text-align:center;font-size:12px;color:#999;margin-bottom:20px}
+  .dual-col{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid #e8dcc8}
+  @media(max-width:600px){.dual-col{grid-template-columns:1fr}}
+  .dual-col .col-header{text-align:center;padding:12px 8px;font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:#fff}
+  .dual-col .col-left .col-header{background:linear-gradient(135deg,#2c3e50,#34495e)}
+  .dual-col .col-right .col-header{background:linear-gradient(135deg,#8e44ad,#9b59b6)}
+  .dual-tl{padding:8px 0}
+  .tl-row{display:flex;gap:0;min-height:44px;align-items:stretch;border-bottom:1px solid #f5f0e8}
+  .tl-row:last-child{border-bottom:none}
+  .tl-year{width:74px;text-align:center;font-size:10px;color:#888;padding:8px 4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:500}
+  .tl-year.star{color:#8b6914;font-weight:700;background:#fdf8ee}
+  .tl-event{flex:1;padding:8px 10px;font-size:12px;color:#555;display:flex;align-items:center;line-height:1.5}
+  .tl-event.peak{background:linear-gradient(135deg,#fdf8ee,#fffdf5);color:#8b6914;font-weight:600;border-left:3px solid #c9a96e}
+  .dual-tag{display:inline-block;font-size:9px;padding:1px 6px;border-radius:8px;margin-left:4px;white-space:nowrap}
+  .dual-tag.personal{background:#eaf2f8;color:#2c3e50;border:1px solid #2c3e5040}
+  .dual-tag.history{background:#f5eaf8;color:#8e44ad;border:1px solid #8e44ad40}
+
+  .prose-section{background:#fff;border-radius:14px;padding:24px;margin:20px 0;box-shadow:0 2px 10px rgba(0,0,0,0.04);border-left:4px solid #c9a96e}
+  .prose-section.sima{border-left-color:#2c3e50}
+  .prose-section.zhuangzi{border-left-color:#8e44ad}
+  .prose-section h4{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#4a3728;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .prose-section .prose-text{font-size:14px;color:#555;line-height:1.9}
+  .prose-section .prose-text .highlight{background:#fdf6ee;padding:2px 6px;border-radius:4px;color:#8b6914;font-weight:500}
+
+  .expert{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.04);border-left:4px solid #c9a96e;margin-bottom:14px}
+  .expert-header{padding:16px 20px 0;display:flex;align-items:center;gap:12px}
+  .expert-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0}
+  .expert-meta{flex:1}
+  .expert-name{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;color:#4a3728}
+  .expert-role{font-size:12px;color:#999}
+  .expert-body{padding:12px 20px 20px;font-size:14px;color:#555;line-height:1.9}
+  .expert-body .highlight{background:#fdf6ee;padding:2px 6px;border-radius:4px;color:#8b6914;font-weight:500}
+  .expert.reviewer{border-left-color:#e74c3c;background:linear-gradient(135deg,#fff,#fff5f5)}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:8px 0}
+  .divider-line{flex:1;height:1px;background:#e8dcc8}
+  .divider-text{font-size:12px;color:#c9a96e;white-space:nowrap;font-weight:500}
+
+  .kexin-dialogue{background:linear-gradient(135deg,#fffdf5,#fef9f0);border-radius:16px;padding:28px 24px;margin:28px 0;box-shadow:0 3px 14px rgba(0,0,0,0.05);border:2px solid #e8dcc8}
+  .kexin-dialogue h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;text-align:center;margin-bottom:4px}
+  .kexin-dialogue .intro{text-align:center;font-size:13px;color:#999;margin-bottom:20px;line-height:1.6}
+  .kexin-dialogue .intro strong{color:#8b6914}
+  .q-item{background:#fff;border-radius:12px;padding:18px 20px;margin:12px 0;border-left:4px solid #d35400;box-shadow:0 1px 6px rgba(0,0,0,0.03)}
+  .q-item .q-text{font-size:14px;color:#555;line-height:1.7}
+  .q-item .q-label{font-size:11px;color:#d35400;font-weight:700;letter-spacing:2px;margin-bottom:4px}
+  .q-item .q-ask{font-family:'Noto Serif SC',serif;font-size:16px;color:#4a3728;font-weight:600;margin-bottom:8px}
+  .q-options{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .q-opt{font-size:13px;padding:8px 16px;border-radius:20px;border:2px solid #e8dcc8;background:#fff;color:#888;cursor:pointer;font-family:'Noto Sans SC',sans-serif;transition:all 0.2s;user-select:none}
+  .q-opt:hover{border-color:#d35400;color:#d35400}
+  .q-opt.picked{border-color:#d35400;background:#fef5f0;color:#d35400;font-weight:700;box-shadow:0 0 0 3px rgba(211,84,0,0.1)}
+  .q-pick{display:inline-block;font-size:10px;color:#27ae60;margin-left:4px;opacity:0;transition:opacity 0.2s}
+  .q-opt.picked .q-pick{opacity:1}
+  .signature-area{text-align:center;margin-top:24px;padding-top:20px;border-top:1px solid #e8dcc8}
+  .signature-area .seal{width:80px;height:80px;border:3px solid #c0392b;border-radius:8px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:18px;color:#c0392b;font-weight:700;writing-mode:vertical-rl;letter-spacing:4px;padding:8px;background:#fff0f0}
+  .signature-area .caption{font-size:12px;color:#999;margin-top:4px}
+
+  .image-section{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 10px rgba(0,0,0,0.04);margin:24px 0;border-left:4px solid #d35400}
+  .image-section h3{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#4a3728;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .prompt-box{background:#fdf8ee;border:2px solid #e8dcc8;border-radius:12px;padding:18px 20px;font-size:14px;color:#555;line-height:1.9;white-space:pre-wrap;font-family:'Noto Sans SC',sans-serif;margin-bottom:16px}
+  .copy-btn{background:linear-gradient(135deg,#c9a96e,#8b6914);color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Noto Sans SC',sans-serif}
+  .copy-btn:hover{opacity:0.9}
+
+  .five-grid{background:#fdf8ee;border-radius:14px;padding:20px;margin-top:24px;border:1px solid #e8dcc8}
+  .five-grid h4{font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#8b6914;margin-bottom:14px}
+  .grid-item{padding:10px 0;border-bottom:1px solid #eee;display:flex;gap:12px;font-size:14px}
+  .grid-item:last-child{border-bottom:none}
+  .grid-num{width:26px;height:26px;border-radius:50%;background:#c9a96e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+  .grid-text{color:#555;line-height:1.6}
+  .grid-text strong{color:#4a3728}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="title">三 峡</div>
+    <div class="author">— 北魏 · 郦道元《水经注》</div>
+
+    <div class="poem-box">
+      <div class="poem-line">
+        <span class="char-box"><span class="py">zì</span><span class="hz">自</span></span><span class="char-box"><span class="py">sān</span><span class="hz">三</span></span><span class="char-box"><span class="py">xiá</span><span class="hz">峡</span></span><span class="char-box"><span class="py">qī</span><span class="hz">七</span></span><span class="char-box"><span class="py">bǎi</span><span class="hz">百</span></span><span class="char-box"><span class="py">lǐ</span><span class="hz">里</span></span><span class="char-box"><span class="py">zhōng</span><span class="hz">中</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">liǎng</span><span class="hz">两</span></span><span class="char-box"><span class="py">àn</span><span class="hz">岸</span></span><span class="char-box"><span class="py">lián</span><span class="hz">连</span></span><span class="char-box"><span class="py">shān</span><span class="hz">山</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">lüè</span><span class="hz">略</span></span><span class="char-box"><span class="py">wú</span><span class="hz">无</span></span><span class="char-box"><span class="py">quē</span><span class="hz">阙</span></span><span class="char-box"><span class="py">chù</span><span class="hz">处</span></span><span class="punc">。</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">chóng</span><span class="hz">重</span></span><span class="char-box"><span class="py">yán</span><span class="hz">岩</span></span><span class="char-box"><span class="py">dié</span><span class="hz">叠</span></span><span class="char-box"><span class="py">zhàng</span><span class="hz">嶂</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">yǐn</span><span class="hz">隐</span></span><span class="char-box"><span class="py">tiān</span><span class="hz">天</span></span><span class="char-box"><span class="py">bì</span><span class="hz">蔽</span></span><span class="char-box"><span class="py">rì</span><span class="hz">日</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">zì</span><span class="hz">自</span></span><span class="char-box"><span class="py">fēi</span><span class="hz">非</span></span><span class="char-box"><span class="py">tíng</span><span class="hz">亭</span></span><span class="char-box"><span class="py">wǔ</span><span class="hz">午</span></span><span class="char-box"><span class="py">yè</span><span class="hz">夜</span></span><span class="char-box"><span class="py">fēn</span><span class="hz">分</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">bù</span><span class="hz">不</span></span><span class="char-box"><span class="py">jiàn</span><span class="hz">见</span></span><span class="char-box"><span class="py">xī</span><span class="hz">曦</span></span><span class="char-box"><span class="py">yuè</span><span class="hz">月</span></span><span class="punc">。</span>
+      </div>
+      <div class="poem-line"><span class="gap"></span></div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">zhì</span><span class="hz">至</span></span><span class="char-box"><span class="py">yú</span><span class="hz">于</span></span><span class="char-box"><span class="py">xià</span><span class="hz">夏</span></span><span class="char-box"><span class="py">shuǐ</span><span class="hz">水</span></span><span class="char-box"><span class="py">xiāng</span><span class="hz">襄</span></span><span class="char-box"><span class="py">líng</span><span class="hz">陵</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">yán</span><span class="hz">沿</span></span><span class="char-box"><span class="py">sù</span><span class="hz">溯</span></span><span class="char-box"><span class="py">zǔ</span><span class="hz">阻</span></span><span class="char-box"><span class="py">jué</span><span class="hz">绝</span></span><span class="punc">。</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">huò</span><span class="hz">或</span></span><span class="char-box"><span class="py">wáng</span><span class="hz">王</span></span><span class="char-box"><span class="py">mìng</span><span class="hz">命</span></span><span class="char-box"><span class="py">jí</span><span class="hz">急</span></span><span class="char-box"><span class="py">xuān</span><span class="hz">宣</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">yǒu</span><span class="hz">有</span></span><span class="char-box"><span class="py">shí</span><span class="hz">时</span></span><span class="char-box"><span class="py">zhāo</span><span class="hz">朝</span></span><span class="char-box"><span class="py">fā</span><span class="hz">发</span></span><span class="char-box"><span class="py">bái</span><span class="hz">白</span></span><span class="char-box"><span class="py">dì</span><span class="hz">帝</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">mù</span><span class="hz">暮</span></span><span class="char-box"><span class="py">dào</span><span class="hz">到</span></span><span class="char-box"><span class="py">jiāng</span><span class="hz">江</span></span><span class="char-box"><span class="py">líng</span><span class="hz">陵</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">qí</span><span class="hz">其</span></span><span class="char-box"><span class="py">jiān</span><span class="hz">间</span></span><span class="char-box"><span class="py">qiān</span><span class="hz">千</span></span><span class="char-box"><span class="py">èr</span><span class="hz">二</span></span><span class="char-box"><span class="py">bǎi</span><span class="hz">百</span></span><span class="char-box"><span class="py">lǐ</span><span class="hz">里</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">suī</span><span class="hz">虽</span></span><span class="char-box"><span class="py">chéng</span><span class="hz">乘</span></span><span class="char-box"><span class="py">bēn</span><span class="hz">奔</span></span><span class="char-box"><span class="py">yù</span><span class="hz">御</span></span><span class="char-box"><span class="py">fēng</span><span class="hz">风</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">bù</span><span class="hz">不</span></span><span class="char-box"><span class="py">yǐ</span><span class="hz">以</span></span><span class="char-box"><span class="py">jí</span><span class="hz">疾</span></span><span class="char-box"><span class="py">yě</span><span class="hz">也</span></span><span class="punc">。</span>
+      </div>
+      <div class="poem-line"><span class="gap"></span></div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">chūn</span><span class="hz">春</span></span><span class="char-box"><span class="py">dōng</span><span class="hz">冬</span></span><span class="char-box"><span class="py">zhī</span><span class="hz">之</span></span><span class="char-box"><span class="py">shí</span><span class="hz">时</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">zé</span><span class="hz">则</span></span><span class="char-box"><span class="py">sù</span><span class="hz">素</span></span><span class="char-box"><span class="py">tuān</span><span class="hz">湍</span></span><span class="char-box"><span class="py">lǜ</span><span class="hz">绿</span></span><span class="char-box"><span class="py">tán</span><span class="hz">潭</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">huí</span><span class="hz">回</span></span><span class="char-box"><span class="py">qīng</span><span class="hz">清</span></span><span class="char-box"><span class="py">dào</span><span class="hz">倒</span></span><span class="char-box"><span class="py">yǐng</span><span class="hz">影</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">jué</span><span class="hz">绝</span></span><span class="char-box"><span class="py">yǎn</span><span class="hz">巘</span></span><span class="char-box"><span class="py">duō</span><span class="hz">多</span></span><span class="char-box"><span class="py">shēng</span><span class="hz">生</span></span><span class="char-box"><span class="py">guài</span><span class="hz">怪</span></span><span class="char-box"><span class="py">bǎi</span><span class="hz">柏</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">xuán</span><span class="hz">悬</span></span><span class="char-box"><span class="py">quán</span><span class="hz">泉</span></span><span class="char-box"><span class="py">pù</span><span class="hz">瀑</span></span><span class="char-box"><span class="py">bù</span><span class="hz">布</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">fēi</span><span class="hz">飞</span></span><span class="char-box"><span class="py">shù</span><span class="hz">漱</span></span><span class="char-box"><span class="py">qí</span><span class="hz">其</span></span><span class="char-box"><span class="py">jiān</span><span class="hz">间</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">qīng</span><span class="hz">清</span></span><span class="char-box"><span class="py">róng</span><span class="hz">荣</span></span><span class="char-box"><span class="py">jùn</span><span class="hz">峻</span></span><span class="char-box"><span class="py">mào</span><span class="hz">茂</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">liáng</span><span class="hz">良</span></span><span class="char-box"><span class="py">duō</span><span class="hz">多</span></span><span class="char-box"><span class="py">qù</span><span class="hz">趣</span></span><span class="char-box"><span class="py">wèi</span><span class="hz">味</span></span><span class="punc">。</span>
+      </div>
+      <div class="poem-line"><span class="gap"></span></div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">měi</span><span class="hz">每</span></span><span class="char-box"><span class="py">zhì</span><span class="hz">至</span></span><span class="char-box"><span class="py">qíng</span><span class="hz">晴</span></span><span class="char-box"><span class="py">chū</span><span class="hz">初</span></span><span class="char-box"><span class="py">shuāng</span><span class="hz">霜</span></span><span class="char-box"><span class="py">dàn</span><span class="hz">旦</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">lín</span><span class="hz">林</span></span><span class="char-box"><span class="py">hán</span><span class="hz">寒</span></span><span class="char-box"><span class="py">jiàn</span><span class="hz">涧</span></span><span class="char-box"><span class="py">sù</span><span class="hz">肃</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">cháng</span><span class="hz">常</span></span><span class="char-box"><span class="py">yǒu</span><span class="hz">有</span></span><span class="char-box"><span class="py">gāo</span><span class="hz">高</span></span><span class="char-box"><span class="py">yuán</span><span class="hz">猿</span></span><span class="char-box"><span class="py">cháng</span><span class="hz">长</span></span><span class="char-box"><span class="py">xiào</span><span class="hz">啸</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">zhǔ</span><span class="hz">属</span></span><span class="char-box"><span class="py">yǐn</span><span class="hz">引</span></span><span class="char-box"><span class="py">qī</span><span class="hz">凄</span></span><span class="char-box"><span class="py">yì</span><span class="hz">异</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">kōng</span><span class="hz">空</span></span><span class="char-box"><span class="py">gǔ</span><span class="hz">谷</span></span><span class="char-box"><span class="py">chuán</span><span class="hz">传</span></span><span class="char-box"><span class="py">xiǎng</span><span class="hz">响</span></span><span class="punc">，</span>
+        <span class="char-box"><span class="py">āi</span><span class="hz">哀</span></span><span class="char-box"><span class="py">zhuǎn</span><span class="hz">转</span></span><span class="char-box"><span class="py">jiǔ</span><span class="hz">久</span></span><span class="char-box"><span class="py">jué</span><span class="hz">绝</span></span><span class="punc">。</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">gù</span><span class="hz">故</span></span><span class="char-box"><span class="py">yú</span><span class="hz">渔</span></span><span class="char-box"><span class="py">zhě</span><span class="hz">者</span></span><span class="char-box"><span class="py">gē</span><span class="hz">歌</span></span><span class="char-box"><span class="py">yuē</span><span class="hz">曰</span></span><span class="punc">：</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">bā</span><span class="hz">巴</span></span><span class="char-box"><span class="py">dōng</span><span class="hz">东</span></span><span class="char-box"><span class="py">sān</span><span class="hz">三</span></span><span class="char-box"><span class="py">xiá</span><span class="hz">峡</span></span><span class="char-box"><span class="py">wū</span><span class="hz">巫</span></span><span class="char-box"><span class="py">xiá</span><span class="hz">峡</span></span><span class="char-box"><span class="py">cháng</span><span class="hz">长</span></span><span class="punc">，</span>
+      </div>
+      <div class="poem-line">
+        <span class="char-box"><span class="py">yuán</span><span class="hz">猿</span></span><span class="char-box"><span class="py">míng</span><span class="hz">鸣</span></span><span class="char-box"><span class="py">sān</span><span class="hz">三</span></span><span class="char-box"><span class="py">shēng</span><span class="hz">声</span></span><span class="char-box"><span class="py">lèi</span><span class="hz">泪</span></span><span class="char-box"><span class="py">zhān</span><span class="hz">沾</span></span><span class="char-box"><span class="py">cháng</span><span class="hz">裳</span></span><span class="punc">。</span>
+      </div>
+    </div>
+
+    <div class="sub">陪女儿读 122 篇古诗文 · 第56篇 · 郦道元（1/1·独此一篇）</div>
+  </div>
+
+  <div style="text-align:center;margin-top:20px">
+    <img src="三峡沐言注.png" alt="可心 · 沐言注 · 三峡" style="width:100%;max-width:640px;border-radius:14px;box-shadow:0 6px 28px rgba(0,0,0,0.12)">
+  </div>
+
+  <!-- Workflow -->
+  <div class="workflow">
+    <span class="step">📜 司马迁</span><span class="arrow">→</span>
+    <span class="step">🎭 庄子</span><span class="arrow">→</span>
+    <span class="step">🖋️ 苏轼</span><span class="arrow">→</span>
+    <span class="step">🌟 达哥</span><span class="arrow">→</span>
+    <span class="step">📝 命题人</span><span class="arrow">→</span>
+    <span class="step gate">🔍 史官</span><span class="arrow">→</span>
+    <span class="step">🎨 顾恺之</span>
+  </div>
+
+  <!-- 双轴图鉴 -->
+  <div class="life-map">
+    <h3>郦道元生平 × 北魏时代</h3>
+    <div class="subtitle">左边看"谁" · 右边看"天" — 一个人写了一辈子地理，却从未到过他写得最动人的地方</div>
+    <div class="dual-col">
+      <div class="col-left">
+        <div class="col-header">📜 郦道元的一生<br><span style="font-size:11px;font-weight:400">司马迁视角 · 看个人</span></div>
+        <div class="dual-tl">
+          <div class="tl-row"><div class="tl-year">约470</div><div class="tl-event">生于范阳涿县（今河北涿州）· 父郦范平东将军</div></div>
+          <div class="tl-row"><div class="tl-year">少年</div><div class="tl-event">随父在山东青州生活 · 游历山川 · 对地理产生兴趣</div></div>
+          <div class="tl-row"><div class="tl-year">约489</div><div class="tl-event">父亲去世 · 袭爵永宁伯</div></div>
+          <div class="tl-row"><div class="tl-year">493</div><div class="tl-event">北魏迁都洛阳 · 郦道元任尚书郎</div></div>
+          <div class="tl-row"><div class="tl-year star">518-525</div><div class="tl-event peak"><span class="dual-tag personal" style="background:#c9a96e;color:#fff;border-color:#c9a96e">⭐ 今日</span> 约48-55岁·被免职居洛阳·撰《水经注》40卷30万字</div></div>
+          <div class="tl-row"><div class="tl-year">527</div><div class="tl-event">被政敌借刀杀人 · 阴盘驿亭被围 · 与弟及二子遇害 · 终年约57岁</div></div>
+        </div>
+      </div>
+      <div class="col-right">
+        <div class="col-header">🎭 南北朝的年表<br><span style="font-size:11px;font-weight:400">庄子视角 · 看天命</span></div>
+        <div class="dual-tl">
+          <div class="tl-row"><div class="tl-year">386</div><div class="tl-event">北魏建立 · 鲜卑拓跋氏统一北方</div></div>
+          <div class="tl-row"><div class="tl-year">420</div><div class="tl-event">东晋灭亡 · 刘宋代晋 · 南北朝对峙开始</div></div>
+          <div class="tl-row"><div class="tl-year">471-499</div><div class="tl-event">孝文帝在位 · 力主汉化改革 · 迁都洛阳</div></div>
+          <div class="tl-row"><div class="tl-year star">约470-527</div><div class="tl-event peak">郦道元一生 · 北魏中后期 <span class="dual-tag history">⚔️ 南北隔绝</span></div></div>
+          <div class="tl-row"><div class="tl-year">502-557</div><div class="tl-event">南朝梁 · 文学极盛 · 《文心雕龙》《文选》</div></div>
+          <div class="tl-row"><div class="tl-year">534</div><div class="tl-event">北魏分裂为东魏、西魏</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 地图 -->
+  <div class="life-map">
+    <h3>北魏疆域图 · 郦道元的世界</h3>
+    <div class="subtitle">约公元500年 · 郦道元的一生从未跨过南北边界 · 三峡在他去不了的南朝</div>
+    <div style="text-align:center;margin-top:16px">
+      <img src="北魏疆域图.png" alt="北魏疆域图" style="width:100%;max-width:660px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.1)">
+    </div>
+  </div>
+
+  <!-- 司马迁 × 庄子 合论 -->
+  <div class="prose-section sima">
+    <h4>📜 司马迁 · 观其个人</h4>
+    <div class="prose-text">
+      <p>郦道元在122篇古诗文中只出现<span class="highlight">1次</span>——就是这篇《三峡》。就这一次，够了一千年。</p>
+      <p>他是北魏人，生在今天的河北涿州，一辈子在北方做官。南北朝严重对立，北魏的疆域从未到过长江以南——<span class="highlight">他一生从未亲眼见过三峡。</span>他考察了几百条北方的河流，却写不了黄河。他只能靠书——他引用了437种古籍和碑刻，在洛阳的案头，拼出了这段不到200字的文字。</p>
+      <p>然后这段文字成了中国写山水写得最好的一篇。李白路过三峡写了一首《早发白帝城》，"朝辞白帝彩云间，千里江陵一日还"——这两句直接从郦道元这里来的。一个没去过三峡的人写的文字，被去过三峡的李白照着抄。</p>
+      <p><span class="highlight">但命运没有放过他。527年，他被政敌陷害，在阴盘驿亭被围困，与弟弟和两个儿子一同被害。他写的书活了1500年。嬴了。</span></p>
+    </div>
+  </div>
+
+  <div class="prose-section zhuangzi">
+    <h4>🎭 庄子 · 观其时势</h4>
+    <div class="prose-text">
+      <p>郦道元生活的年代，中国被一条南北边界切成两半。他在北，三峡在南。一个研究地理的人，被政治画的一条线挡住了他最想写的地方。</p>
+      <p>南北朝是什么样的时代？北方是鲜卑人建立的北魏，南方是汉族政权宋齐梁陈。两边打仗、对峙、互不往来。但郦道元做了一件别人没做的事——<span class="highlight">他用文字翻过了那道墙。他把所有能找到的关于南方的书全读了，然后在洛阳的书斋里，写出了一段比真正去过的人写得更好的文字。</span></p>
+      <p>北魏的孝文帝推行汉化改革，让北方重新重视文化和学问。郦道元就是孝文帝时代的士大夫——他既是官员，也是学者。他的悲剧在于：政治杀了他的人，但他的文字飞出去了。</p>
+      <p><span class="highlight">知识可以穿越政治，文字可以穿越地理。</span></p>
+    </div>
+  </div>
+
+  <!-- 苏轼 文学品鉴 -->
+  <div class="expert" style="border-left-color:#c0392b">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#c0392b,#e74c3c)">🖋️</div>
+      <div class="expert-meta"><div class="expert-name">苏轼</div><div class="expert-role">文忠公 · 千古文章四大家</div></div>
+    </div>
+    <div class="expert-body">
+      不到200个字，写了春夏秋冬四个季节的三峡——这就是《三峡》最厉害的地方。不是"写得华丽"，是<span class="highlight">"写得足够少而足够大"</span>。
+      <br><br>
+      <strong>夏天</strong>——"朝发白帝，暮到江陵，其间千二百里，虽乘奔御风，不以疾也"。他写水急，不说"水流很急"，说"骑着马追不上、乘着风也追不上"。<br>
+      <strong>春冬</strong>——"素湍绿潭，回清倒影"。白浪和绿潭，一急一缓，一明一暗，八个字写完了一个季节。<br>
+      <strong>秋天</strong>——收尾用了一个渔歌："巴东三峡巫峡长，猿鸣三声泪沾裳。"他在文章里引用了民歌。这不是"技巧"，这是——<span class="highlight">他知道自己没去过，所以把当地人的话放进去，让真实的人替他见证。</span>
+      <br><br>
+      后来李白路过三峡，写了一首《早发白帝城》："朝辞白帝彩云间，千里江陵一日还"——这两句直接从郦道元的"朝发白帝，暮到江陵"里来的。没去过三峡的人写的文字，被去过三峡的李白照着用。
+    </div>
+  </div>
+
+  <!-- 达哥 共读 -->
+  <div class="expert" style="border-left-color:#16a085">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#16a085,#1abc9c)">🌟</div>
+      <div class="expert-meta"><div class="expert-name">达哥共读</div><div class="expert-role">此心安处是吾乡</div></div>
+    </div>
+    <div class="expert-body">
+      <strong>讲给可心听：</strong><br>
+      可心，你知道这篇文章是谁写的吗？一个叫郦道元的叔叔。他生活在1500年前，是个地理学家。他在洛阳（就是河南那个地方）工作，写了一本特别厚的书叫《水经注》，里面写了1252条河。
+      <br><br>
+      但是——<span class="highlight">长江三峡，他这辈子从来没去过。</span>那时候他的国家在北方，长江在南方，中间隔着一道边境线，他过不去。那他怎么写出这么漂亮的三峡的呢？他把能找到的关于三峡的书全看了——437种——然后用想象力重新写了一遍。
+      <br><br>
+      这就像老师让你写一篇"我最想去的地方"，你从来没去过，但你查了所有关于那个地方的书、看了所有照片，然后写的文章比真正去过的人写得还好。后来另一个大诗人李白路过三峡，写诗的时候直接抄了他的两句话——一个没去过的人写的，被去过的人抄。牛不牛？
+      <br><br>
+      <strong>跟可心聊：</strong><br>
+      1. 你有没有"没亲眼见过但是特别想去看一看"的地方？<br>
+      2. 看书和亲自去，哪个更重要？还是都需要？<br>
+      3. 郦道元57岁被坏人害死了，但他写的书活了1500年。你觉得——一个人写的文字，是不是比他活得久多了？
+    </div>
+  </div>
+
+  <!-- 命题人 -->
+  <div class="expert" style="border-left-color:#2471a3">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#2471a3,#1a5276)">📝</div>
+      <div class="expert-meta"><div class="expert-name">命题人</div><div class="expert-role">北京中考 · 考点透视</div></div>
+    </div>
+    <div class="expert-body">
+      <strong>📋 中考必考实词</strong><br>
+      <span class="highlight">阙</span>（quē）：通"缺"，中断。考点：通假字。<br>
+      <span class="highlight">襄</span>（xiāng）：冲上、漫上。"夏水襄陵"——夏天水涨漫上山陵。<br>
+      <span class="highlight">沿溯</span>（yán sù）：顺流而下（沿）和逆流而上（溯）。"沿溯阻绝"——无论上下都走不通。<br>
+      <span class="highlight">属引</span>（zhǔ yǐn）：连接不断。"属"读zhǔ——连接。常考题：注音释义。<br>
+      <span class="highlight">绝</span>：文中两见——"沿溯阻绝"（断绝） vs "哀转久绝"（消失）。一词多义，典型考点。
+      <br><br>
+      <strong>📝 核心名句默写</strong><br>
+      ① "自三峡七百里中，两岸连山，略无阙处"——开篇总写，高频填空。<br>
+      ② "虽乘奔御风，不以疾也"——侧面描写水速，注意"奔"在这里是名词（飞奔的马），词类活用考点。<br>
+      ③ "巴东三峡巫峡长，猿鸣三声泪沾裳"——引用渔歌收尾，手法考点：侧面烘托秋季萧瑟。
+      <br><br>
+      <strong>🎯 文章手法考点</strong><br>
+      · <strong>四季结构</strong>：夏（水势）→春冬（清幽）→秋（萧瑟），按水势变化组织，是典型的"分类描写"手法。<br>
+      · <strong>正面+侧面描写</strong>："重岩叠嶂隐天蔽日"是正面写山高，"自非亭午夜分不见曦月"是侧面烘托。<br>
+      · <strong>引用手法</strong>：结尾引用渔歌——借当地人之口增加真实感，也是作者"未去过三峡"的巧妙处理。<br>
+      · <strong>简练传神</strong>：全文不到200字，写了四季三景物——中考常要求赏析"简练的语言风格"。
+      <br><br>
+      <strong>⚠️ 易错字</strong>：嶂（山字旁，不是"障"）、湍（三点水，不是"喘"）、漱（三点水+欶）、裳（cháng不要读shang）
+    </div>
+  </div>
+
+  <!-- 史官 -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">▼ 史官审核 ▼</div><div class="divider-line"></div></div>
+
+  <div class="expert reviewer">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">🔍</div>
+      <div class="expert-meta"><div class="expert-name">史官</div><div class="expert-role">秉笔直书 · 信史可传</div></div>
+    </div>
+    <div class="expert-body">
+      <strong>事实核查</strong>：郦道元约470-527年，北魏地理学家；《水经注》40卷30余万字，引用437种古籍；一生未到长江以南（南北朝对峙），未亲见三峡；527年被政敌陷害死于阴盘驿亭；122首中仅此1篇。✅ 全部有史料可查。<br>
+      <strong>拼音审核</strong>：重点字——"阙(quē)"、 "嶂(zhàng)"、 "曦(xī)"、 "溯(sù)"、 "巘(yǎn)"、 "漱(shù)"、 "属(zhǔ)"。全部正确。渔民歌谣部分"沾裳(cháng)"正确，古音"裳"读cháng。✅<br>
+      <strong>价值观审核</strong>：叙事角度（没去过但靠知识到达）积极向上，对儿童传递"知识可以突破界限"的正向价值观。被害的悲剧部分用语克制，没有渲染恐怖。✅<br>
+      <strong>拼音标注提示</strong>："阙"不读què；"巘"不读yàn；"属引"的"属"读zhǔ（连接）；"裳"古音cháng。<br>
+      <span style="color:#27ae60;font-weight:700">史官结论：全部通过。准予放行，交由顾恺之。</span>
+    </div>
+  </div>
+
+  <!-- 顾恺之 -->
+  <div class="divider"><div class="divider-line"></div><div class="divider-text">▼ 审核通过 · 交付丹青 ▼</div><div class="divider-line"></div></div>
+
+  <div class="expert" style="border-left-color:#d35400">
+    <div class="expert-header">
+      <div class="expert-icon" style="background:linear-gradient(135deg,#d35400,#e67e22)">🎨</div>
+      <div class="expert-meta"><div class="expert-name">顾恺之</div><div class="expert-role">以形写神 · 迁想妙得</div></div>
+    </div>
+    <div class="expert-body">
+      基于司马迁和庄子的合论、苏轼的文学品鉴、史官的审核意见——尤其是"<span class="highlight">没去过却写出了千古名篇</span>"这个核心反差——下面交付插画提示词。画要表达的不是三峡有多壮观，而是"一个人在书斋里，用想象力翻过了国界，写出了他从未见过的风景"。
+    </div>
+  </div>
+
+  <!-- 顾恺之 × 可心 互动问答 -->
+  <div class="kexin-dialogue">
+    <h3>🎨 顾恺之 × 可心</h3>
+    <div class="intro">学完了这一篇，<strong>现在你是画师</strong>。这篇课文在你心里是什么样子的？<br><span style="font-size:11px;color:#bbb">点一下你选的答案就好</span></div>
+
+    <div class="q-item"><div class="q-text">
+      <div class="q-label">第 1 问</div>
+      <div class="q-ask">「三峡是什么颜色的？」</div>
+      <p>"两岸连山，隐天蔽日"——深绿？"素湍绿潭"——白和绿？"晴初霜旦"——灰蓝？你心里三峡该是什么颜色？</p>
+      <div class="q-options">
+        <span class="q-opt" data-q="1" data-v="深绿色"><span class="q-pick">✓</span> 深绿色</span>
+        <span class="q-opt" data-q="1" data-v="白色加绿色"><span class="q-pick">✓</span> 白色加绿色</span>
+        <span class="q-opt" data-q="1" data-v="灰蓝色"><span class="q-pick">✓</span> 灰蓝色</span>
+        <span class="q-opt" data-q="1" data-v="青绿色"><span class="q-pick">✓</span> 青绿色</span>
+      </div>
+    </div></div>
+
+    <div class="q-item"><div class="q-text">
+      <div class="q-label">第 2 问</div>
+      <div class="q-ask">「郦道元没去过三峡——你觉得他在画里吗？」</div>
+      <p>他该在画里吗？在哪儿？</p>
+      <div class="q-options">
+        <span class="q-opt" data-q="2" data-v="在洛阳书斋里看书"><span class="q-pick">✓</span> 在洛阳书斋里看书</span>
+        <span class="q-opt" data-q="2" data-v="站在远处望着三峡"><span class="q-pick">✓</span> 站在远处望着三峡</span>
+        <span class="q-opt" data-q="2" data-v="不在画里只有三峡"><span class="q-pick">✓</span> 不在画里，只有三峡</span>
+      </div>
+    </div></div>
+
+    <div class="q-item"><div class="q-text">
+      <div class="q-label">第 3 问</div>
+      <div class="q-ask">「四个季节，只能画一个——你选哪个？」</div>
+      <p>夏水急流？春冬清澈？还是秋霜长啸？</p>
+      <div class="q-options">
+        <span class="q-opt" data-q="3" data-v="夏天（朝发白帝暮到江陵·急流）"><span class="q-pick">✓</span> 夏天 · 急流</span>
+        <span class="q-opt" data-q="3" data-v="春冬（素湍绿潭回清倒影·清澈）"><span class="q-pick">✓</span> 春冬 · 清澈</span>
+        <span class="q-opt" data-q="3" data-v="秋天（晴初霜旦高猿长啸·苍凉）"><span class="q-pick">✓</span> 秋天 · 苍凉</span>
+      </div>
+    </div></div>
+
+    <div class="q-item"><div class="q-text">
+      <div class="q-label">第 4 问</div>
+      <div class="q-ask">「这幅画里有什么声音？」</div>
+      <p>闭上眼睛想象——三峡是什么声音？</p>
+      <div class="q-options">
+        <span class="q-opt" data-q="4" data-v="急流奔涌的水声"><span class="q-pick">✓</span> 急流奔涌的水声</span>
+        <span class="q-opt" data-q="4" data-v="猿猴的长啸在山谷回荡"><span class="q-pick">✓</span> 猿猴的长啸</span>
+        <span class="q-opt" data-q="4" data-v="安静只有风声"><span class="q-pick">✓</span> 安静，只有风声</span>
+        <span class="q-opt" data-q="4" data-v="瀑布落下的轰鸣"><span class="q-pick">✓</span> 瀑布的轰鸣</span>
+      </div>
+    </div></div>
+
+    <div class="q-item"><div class="q-text">
+      <div class="q-label">第 5 问</div>
+      <div class="q-ask">「读完他的一生，画里应该多一点什么？」</div>
+      <p>他被人害死了，但1500年后你还在读他的文章。</p>
+      <div class="q-options">
+        <span class="q-opt" data-q="5" data-v="敬佩（他没去成但写得比谁都好）"><span class="q-pick">✓</span> 敬佩</span>
+        <span class="q-opt" data-q="5" data-v="洒脱（没去过没关系文字替他去了）"><span class="q-pick">✓</span> 洒脱</span>
+        <span class="q-opt" data-q="5" data-v="温暖（他的书活了1500年·值得）"><span class="q-pick">✓</span> 温暖</span>
+      </div>
+    </div></div>
+
+    <div class="signature-area">
+      <div class="seal">沐<br>言<br>注</div>
+      <div class="caption">沐言注 · 这幅画里有可心读完这篇文章之后心里的样子</div>
+    </div>
+  </div>
+
+  <!-- 插画提示词 -->
+  <div class="image-section">
+    <h3>🖼️ 插画提示词 <span style="font-size:12px;color:#999;font-weight:400">— 自动合成可心的选择 · 复制发给 ChatGPT</span></h3>
+    <div class="prompt-box" id="prompt">
+选完了吗？点击下面的按钮，自动把可心的选择合成提示词，再复制发给 ChatGPT。
+    </div>
+    <button class="copy-btn" onclick="buildPrompt()">合成提示词</button>
+    <span style="font-size:12px;color:#999;margin-left:8px" id="hint">← 可心每问点一个答案，然后点这里</span>
+  </div>
+
+  <script>
+    // Click handling
+    document.querySelectorAll('.q-opt').forEach(opt => {
+      opt.addEventListener('click', function(){
+        const qNum = this.dataset.q;
+        document.querySelectorAll('.q-opt[data-q="' + qNum + '"]').forEach(o => o.classList.remove('picked'));
+        this.classList.add('picked');
+      });
+    });
+
+    function buildPrompt(){
+      const sel = {};
+      for(let i=1;i<=5;i++){
+        const picked = document.querySelector('.q-opt[data-q="'+i+'"].picked');
+        if(!picked){ alert('第'+i+'问还没选呢！每问都要点一个答案'); return; }
+        sel[i] = picked.dataset.v;
+      }
+
+      const prompt =
+`竖版插画，3:4比例，中国水墨山水画风格。描绘长江三峡的壮观景色。
+
+画面核心：两岸高山连绵，绝壁耸立，中间一道江水奔流。山上多怪柏，悬泉瀑布飞漱其间。选择${sel[3]}作为主场景。
+色调：${sel[1]}。
+声音氛围：${sel[4]}。
+人物处理：${sel[2]}。
+
+关键氛围：这幅画要表达"一个人一生没去过的地方，他靠知识和想象力写了出来"。${sel[5]}——温暖中有一丝"隔着距离的凝望"感。
+
+文字设计：画面留白处行书竖排"自三峡七百里中"。底部小字横排"北魏 · 郦道元《水经注》"。右下角朱红小字竖排"沐言注"。`;
+
+      document.getElementById('prompt').innerText = prompt;
+      document.getElementById('hint').innerText = '✓ 已合成！现在复制这段发给 ChatGPT';
+    }
+  </script>
+
+  <!-- 五格模板 -->
+  <div class="five-grid">
+    <h4>🧩 五格模板</h4>
+    <div class="grid-item"><div class="grid-num">①</div><div class="grid-text"><strong>扳机</strong>：一个人一生没去过的地方，被他写成了1500年来最好的山水文字。</div></div>
+    <div class="grid-item"><div class="grid-num">②</div><div class="grid-text"><strong>背景</strong>：郦道元（约470-527），北魏地理学家。约48-55岁被免职居洛阳时著《水经注》40卷30万字。一生在北方，从未跨过长江。靠437种古籍，写出1252条河。</div></div>
+    <div class="grid-item"><div class="grid-num">③</div><div class="grid-text"><strong>命运的反差</strong>：没去过三峡的人，写的《三峡》让李白照着抄了两句（"朝发白帝，暮到江陵"）。527年被政敌陷害，与弟及二子遇害。但文章活了1500年。人没了，文字赢了。</div></div>
+    <div class="grid-item"><div class="grid-num">④</div><div class="grid-text"><strong>给可心的问题</strong>：你有"没亲眼见过但特别想去"的地方吗？看书和亲自去，哪个更重要？一个人的文字，是不是比他自己活得久多了？</div></div>
+    <div class="grid-item"><div class="grid-num">⑤</div><div class="grid-text"><strong>钩子</strong>：<em>"有些地方你到不了，但书能把你送到。"</em></div></div>
+  </div>
+
+</div>
+</body>
+</html>
